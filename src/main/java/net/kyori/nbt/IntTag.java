@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
 /**
  * A tag representing an {@code int}.
  */
-public final class IntTag extends Tag {
+public final class IntTag extends NumberTag {
 
   /**
    * The int value.
@@ -46,13 +46,34 @@ public final class IntTag extends Tag {
     this.value = value;
   }
 
-  /**
-   * Gets the int value.
-   *
-   * @return the int value
-   */
-  public int value() {
+  @Override
+  public byte byteValue() {
+    return (byte) (this.value & 0xff);
+  }
+
+  @Override
+  public double doubleValue() {
+    return (double) this.value;
+  }
+
+  @Override
+  public float floatValue() {
+    return (float) this.value;
+  }
+
+  @Override
+  public int intValue() {
     return this.value;
+  }
+
+  @Override
+  public long longValue() {
+    return (long) this.value;
+  }
+
+  @Override
+  public short shortValue() {
+    return (short) (this.value & 0xffff);
   }
 
   @Override

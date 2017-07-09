@@ -38,27 +38,27 @@ public enum TagType {
   /**
    * @see ByteTag
    */
-  BYTE((byte) 1, ByteTag::new),
+  BYTE((byte) 1, true, ByteTag::new),
   /**
    * @see ShortTag
    */
-  SHORT((byte) 2, ShortTag::new),
+  SHORT((byte) 2, true, ShortTag::new),
   /**
    * @see IntTag
    */
-  INT((byte) 3, IntTag::new),
+  INT((byte) 3, true, IntTag::new),
   /**
    * @see LongTag
    */
-  LONG((byte) 4, LongTag::new),
+  LONG((byte) 4, true, LongTag::new),
   /**
    * @see FloatTag
    */
-  FLOAT((byte) 5, FloatTag::new),
+  FLOAT((byte) 5, true, FloatTag::new),
   /**
    * @see DoubleTag
    */
-  DOUBLE((byte) 6, DoubleTag::new),
+  DOUBLE((byte) 6, true, DoubleTag::new),
   /**
    * @see ByteArrayTag
    */
@@ -89,13 +89,19 @@ public enum TagType {
    * The byte id of this tag type.
    */
   private final byte id;
+  private final boolean number;
   /**
    * The tag factory.
    */
   @Nonnull private final Supplier<Tag> factory;
 
   TagType(final byte id, @Nonnull final Supplier<Tag> factory) {
+    this(id, false, factory);
+  }
+
+  TagType(final byte id, final boolean number, @Nonnull final Supplier<Tag> factory) {
     this.id = id;
+    this.number = number;
     this.factory = factory;
   }
 
@@ -106,6 +112,15 @@ public enum TagType {
    */
   byte id() {
     return this.id;
+  }
+
+  /**
+   * Checks if this tag type is a {@link NumberTag number} type.
+   *
+   * @return {@code true} if a number type, {@code false} if not
+   */
+  boolean number() {
+    return this.number;
   }
 
   /**

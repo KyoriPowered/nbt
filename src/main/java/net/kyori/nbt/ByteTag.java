@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
 /**
  * A tag representing a {@code byte}.
  */
-public final class ByteTag extends Tag {
+public final class ByteTag extends NumberTag {
 
   /**
    * The byte value.
@@ -46,12 +46,33 @@ public final class ByteTag extends Tag {
     this.value = value;
   }
 
-  /**
-   * Gets the byte value.
-   *
-   * @return the byte value
-   */
-  public byte value() {
+  @Override
+  public byte byteValue() {
+    return this.value;
+  }
+
+  @Override
+  public double doubleValue() {
+    return this.value;
+  }
+
+  @Override
+  public float floatValue() {
+    return this.value;
+  }
+
+  @Override
+  public int intValue() {
+    return this.value;
+  }
+
+  @Override
+  public long longValue() {
+    return this.value;
+  }
+
+  @Override
+  public short shortValue() {
     return this.value;
   }
 
