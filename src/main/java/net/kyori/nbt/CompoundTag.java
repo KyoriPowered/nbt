@@ -170,7 +170,7 @@ public final class CompoundTag extends Tag {
    * Gets an int.
    *
    * @param key the key
-   * @return the int value, or {@code 0} if this compound does not contain a int tag
+   * @return the int value, or {@code 0} if this compound does not contain an int tag
    *     with the specified key, or has a tag with a different type
    */
   public int getInt(@Nonnull final String key) {
@@ -182,7 +182,7 @@ public final class CompoundTag extends Tag {
    *
    * @param key the key
    * @param defaultValue the default value
-   * @return the int value, or {@code defaultValue} if this compound does not contain a int tag
+   * @return the int value, or {@code defaultValue} if this compound does not contain an int tag
    *     with the specified key, or has a tag with a different type
    */
   public int getInt(@Nonnull final String key, final int defaultValue) {
@@ -317,6 +317,7 @@ public final class CompoundTag extends Tag {
    * @return the array of bytes, or a zero-length array if this compound does not contain a byte array tag
    *     with the specified key, or has a tag with a different type
    */
+  @Nonnull
   public byte[] getByteArray(@Nonnull final String key) {
     if(this.contains(key, TagType.BYTE_ARRAY)) {
       return ((ByteArrayTag) this.tags.get(key)).value();
@@ -329,10 +330,10 @@ public final class CompoundTag extends Tag {
    *
    * @param key the key
    * @param defaultValue the default value
-   * @return the array of bytes, or a zero-length array if this compound does not contain a byte array tag
-   *     with the specified key, or has a tag with a different type
+   * @return the array of bytes, or {@code defaultValue}
    */
-  public byte[] getByteArray(@Nonnull final String key, final byte[] defaultValue) {
+  @Nonnull
+  public byte[] getByteArray(@Nonnull final String key, @Nonnull final byte[] defaultValue) {
     if(this.contains(key, TagType.BYTE_ARRAY)) {
       return ((ByteArrayTag) this.tags.get(key)).value();
     }
@@ -345,7 +346,7 @@ public final class CompoundTag extends Tag {
    * @param key the key
    * @param value the value
    */
-  public void putByteArray(@Nonnull final String key, final byte[] value) {
+  public void putByteArray(@Nonnull final String key, @Nonnull final byte[] value) {
     this.tags.put(key, new ByteArrayTag(value));
   }
 
@@ -356,6 +357,7 @@ public final class CompoundTag extends Tag {
    * @return the string value, or {@code ""} if this compound does not contain a string tag
    *     with the specified key, or has a tag with a different type
    */
+  @Nonnull
   public String getString(@Nonnull final String key) {
     return this.getString(key, "");
   }
@@ -368,7 +370,8 @@ public final class CompoundTag extends Tag {
    * @return the string value, or {@code defaultValue} if this compound does not contain a string tag
    *     with the specified key, or has a tag with a different type
    */
-  public String getString(@Nonnull final String key, final String defaultValue) {
+  @Nonnull
+  public String getString(@Nonnull final String key, @Nonnull final String defaultValue) {
     if(this.contains(key, TagType.STRING)) {
       return ((StringTag) this.tags.get(key)).value();
     }
@@ -381,7 +384,7 @@ public final class CompoundTag extends Tag {
    * @param key the key
    * @param value the value
    */
-  public void putString(@Nonnull final String key, final String value) {
+  public void putString(@Nonnull final String key, @Nonnull final String value) {
     this.tags.put(key, new StringTag(value));
   }
 
@@ -392,6 +395,7 @@ public final class CompoundTag extends Tag {
    * @return the list, or a new list if this compound does not contain a list tag
    *     with the specified key, or has a tag with a different type
    */
+  @Nonnull
   public ListTag getList(@Nonnull final String key) {
     if(this.contains(key, TagType.LIST)) {
       return (ListTag) this.tags.get(key);
@@ -407,7 +411,8 @@ public final class CompoundTag extends Tag {
    * @return the list, or {@code defaultValue} if this compound does not contain a list tag
    *     with the specified key, or has a tag with a different type
    */
-  public ListTag getList(@Nonnull final String key, final ListTag defaultValue) {
+  @Nonnull
+  public ListTag getList(@Nonnull final String key, @Nonnull final ListTag defaultValue) {
     if(this.contains(key, TagType.LIST)) {
       return (ListTag) this.tags.get(key);
     }
@@ -421,6 +426,7 @@ public final class CompoundTag extends Tag {
    * @return the compound, or a new compound if this compound does not contain a compound tag
    *     with the specified key, or has a tag with a different type
    */
+  @Nonnull
   public CompoundTag getCompound(@Nonnull final String key) {
     if(this.contains(key, TagType.COMPOUND)) {
       return (CompoundTag) this.tags.get(key);
@@ -436,7 +442,8 @@ public final class CompoundTag extends Tag {
    * @return the compound, or {@code defaultValue} if this compound does not contain a compound tag
    *     with the specified key, or has a tag with a different type
    */
-  public CompoundTag getCompound(@Nonnull final String key, final CompoundTag defaultValue) {
+  @Nonnull
+  public CompoundTag getCompound(@Nonnull final String key, @Nonnull final CompoundTag defaultValue) {
     if(this.contains(key, TagType.COMPOUND)) {
       return (CompoundTag) this.tags.get(key);
     }
@@ -450,6 +457,7 @@ public final class CompoundTag extends Tag {
    * @return the array of ints, or a zero-length array if this compound does not contain a int array tag
    *     with the specified key, or has a tag with a different type
    */
+  @Nonnull
   public int[] getIntArray(@Nonnull final String key) {
     if(this.contains(key, TagType.BYTE_ARRAY)) {
       return ((IntArrayTag) this.tags.get(key)).value();
@@ -462,10 +470,10 @@ public final class CompoundTag extends Tag {
    *
    * @param key the key
    * @param defaultValue the default value
-   * @return the array of ints, or a zero-length array if this compound does not contain a int array tag
-   *     with the specified key, or has a tag with a different type
+   * @return the array of ints, or {@code defaultValue}
    */
-  public int[] getIntArray(@Nonnull final String key, final int[] defaultValue) {
+  @Nonnull
+  public int[] getIntArray(@Nonnull final String key, @Nonnull final int[] defaultValue) {
     if(this.contains(key, TagType.BYTE_ARRAY)) {
       return ((IntArrayTag) this.tags.get(key)).value();
     }
@@ -478,7 +486,7 @@ public final class CompoundTag extends Tag {
    * @param key the key
    * @param value the value
    */
-  public void putIntArray(@Nonnull final String key, final int[] value) {
+  public void putIntArray(@Nonnull final String key, @Nonnull final int[] value) {
     this.tags.put(key, new IntArrayTag(value));
   }
 
@@ -489,6 +497,7 @@ public final class CompoundTag extends Tag {
    * @return the array of longs, or a zero-length array if this compound does not contain a long array tag
    *     with the specified key, or has a tag with a different type
    */
+  @Nonnull
   public long[] getLongArray(@Nonnull final String key) {
     if(this.contains(key, TagType.BYTE_ARRAY)) {
       return ((LongArrayTag) this.tags.get(key)).value();
@@ -501,10 +510,10 @@ public final class CompoundTag extends Tag {
    *
    * @param key the key
    * @param defaultValue the default value
-   * @return the array of longs, or a zero-length array if this compound does not contain a long array tag
-   *     with the specified key, or has a tag with a different type
+   * @return the array of longs, or {@code defaultValue}
    */
-  public long[] getLongArray(@Nonnull final String key, final long[] defaultValue) {
+  @Nonnull
+  public long[] getLongArray(@Nonnull final String key, @Nonnull final long[] defaultValue) {
     if(this.contains(key, TagType.BYTE_ARRAY)) {
       return ((LongArrayTag) this.tags.get(key)).value();
     }
@@ -517,7 +526,7 @@ public final class CompoundTag extends Tag {
    * @param key the key
    * @param value the value
    */
-  public void putLongArray(@Nonnull final String key, final long[] value) {
+  public void putLongArray(@Nonnull final String key, @Nonnull final long[] value) {
     this.tags.put(key, new LongArrayTag(value));
   }
 

@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 /**
@@ -71,8 +72,308 @@ public final class ListTag extends Tag {
    * @throws IndexOutOfBoundsException if the index is out of range
    */
   @Nonnull
-  public Tag get(final int index) {
+  public Tag get(@Nonnegative final int index) {
     return this.tags.get(index);
+  }
+
+  /**
+   * Gets a byte.
+   *
+   * @param index the index
+   * @return the byte value, or {@code 0}
+   */
+  public byte getByte(@Nonnegative final int index) {
+    return this.getByte(index, (byte) 0);
+  }
+
+  /**
+   * Gets a byte.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the byte value, or {@code defaultValue}
+   */
+  public byte getByte(@Nonnegative final int index, final byte defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type().number()) {
+      return ((NumberTag) tag).byteValue();
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets a short.
+   *
+   * @param index the index
+   * @return the short value, or {@code 0}
+   */
+  public short getShort(@Nonnegative final int index) {
+    return this.getShort(index, (short) 0);
+  }
+
+  /**
+   * Gets a short.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the short value, or {@code defaultValue}
+   */
+  public short getShort(@Nonnegative final int index, final short defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type().number()) {
+      return ((NumberTag) tag).shortValue();
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets an int.
+   *
+   * @param index the index
+   * @return the int value, or {@code 0}
+   */
+  public int getInt(@Nonnegative final int index) {
+    return this.getInt(index, 0);
+  }
+
+  /**
+   * Gets an int.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the int value, or {@code defaultValue}
+   */
+  public int getInt(@Nonnegative final int index, final int defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type().number()) {
+      return ((NumberTag) tag).intValue();
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets a long.
+   *
+   * @param index the index
+   * @return the long value, or {@code 0}
+   */
+  public long getLong(@Nonnegative final int index) {
+    return this.getLong(index, 0L);
+  }
+
+  /**
+   * Gets a long.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the long value, or {@code defaultValue}
+   */
+  public long getLong(@Nonnegative final int index, final long defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type().number()) {
+      return ((NumberTag) tag).longValue();
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets a float.
+   *
+   * @param index the index
+   * @return the float value, or {@code 0}
+   */
+  public float getFloat(@Nonnegative final int index) {
+    return this.getFloat(index, 0f);
+  }
+
+  /**
+   * Gets a float.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the float value, or {@code defaultValue}
+   */
+  public float getFloat(@Nonnegative final int index, final float defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type().number()) {
+      return ((NumberTag) tag).floatValue();
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets a double.
+   *
+   * @param index the index
+   * @return the double value, or {@code 0}
+   */
+  public double getDouble(@Nonnegative final int index) {
+    return this.getDouble(index, 0d);
+  }
+
+  /**
+   * Gets a double.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the double value, or {@code defaultValue}
+   */
+  public double getDouble(@Nonnegative final int index, final double defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type().number()) {
+      return ((NumberTag) tag).doubleValue();
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets an array of bytes.
+   *
+   * @param index the index
+   * @return the array of bytes, or a zero-length array
+   */
+  @Nonnull
+  public byte[] getByteArray(@Nonnegative final int index) {
+    final Tag tag = this.get(index);
+    if(tag.type() == TagType.BYTE_ARRAY) {
+      return ((ByteArrayTag) tag).value();
+    }
+    return new byte[0];
+  }
+
+  /**
+   * Gets an array of bytes.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the array of bytes, or {@code defaultValue}
+   */
+  @Nonnull
+  public byte[] getByteArray(@Nonnegative final int index, @Nonnull final byte[] defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type() == TagType.BYTE_ARRAY) {
+      return ((ByteArrayTag) tag).value();
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets a string.
+   *
+   * @param index the index
+   * @return the string value, or {@code ""}
+   */
+  @Nonnull
+  public String getString(@Nonnegative final int index) {
+    return this.getString(index, "");
+  }
+
+  /**
+   * Gets a string.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the string value, or {@code defaultValue}
+   */
+  @Nonnull
+  public String getString(@Nonnegative final int index, @Nonnull final String defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type() == TagType.STRING) {
+      return ((StringTag) tag).value();
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets a compound.
+   *
+   * @param index the index
+   * @return the compound, or a new compound
+   */
+  @Nonnull
+  public CompoundTag getCompound(@Nonnegative final int index) {
+    final Tag tag = this.get(index);
+    if(tag.type() == TagType.COMPOUND) {
+      return (CompoundTag) tag;
+    }
+    return new CompoundTag();
+  }
+
+  /**
+   * Gets a compound.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the compound, or {@code defaultValue}
+   */
+  @Nonnull
+  public CompoundTag getCompound(@Nonnegative final int index, @Nonnull final CompoundTag defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type() == TagType.COMPOUND) {
+      return (CompoundTag) tag;
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets an array of ints.
+   *
+   * @param index the index
+   * @return the array of ints, or a zero-length array
+   */
+  public int[] getIntArray(@Nonnegative final int index) {
+    final Tag tag = this.get(index);
+    if(tag.type() == TagType.INT_ARRAY) {
+      return ((IntArrayTag) tag).value();
+    }
+    return new int[0];
+  }
+
+  /**
+   * Gets an array of ints.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the array of ints, or {@code defaultValue}
+   */
+  @Nonnull
+  public int[] getIntArray(@Nonnegative final int index, @Nonnull final int[] defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type() == TagType.INT_ARRAY) {
+      return ((IntArrayTag) tag).value();
+    }
+    return defaultValue;
+  }
+
+  /**
+   * Gets an array of longs.
+   *
+   * @param index the index
+   * @return the array of longs, or a zero-length array
+   */
+  @Nonnull
+  public long[] getLongArray(@Nonnegative final int index) {
+    final Tag tag = this.get(index);
+    if(tag.type() == TagType.LONG_ARRAY) {
+      return ((LongArrayTag) tag).value();
+    }
+    return new long[0];
+  }
+
+  /**
+   * Gets an array of longs.
+   *
+   * @param index the index
+   * @param defaultValue the default value
+   * @return the array of longs, or {@code defaultValue}
+   */
+  @Nonnull
+  public long[] getLongArray(@Nonnegative final int index, @Nonnull final long[] defaultValue) {
+    final Tag tag = this.get(index);
+    if(tag.type() == TagType.LONG_ARRAY) {
+      return ((LongArrayTag) tag).value();
+    }
+    return defaultValue;
   }
 
   /**
