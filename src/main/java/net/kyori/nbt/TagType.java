@@ -23,6 +23,7 @@
  */
 package net.kyori.nbt;
 
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
@@ -30,7 +31,7 @@ import javax.annotation.Nonnull;
 /**
  * An enumeration of tag types.
  */
-public enum TagType {
+public enum TagType implements Predicate<TagType> {
   /**
    * @see EndTag
    */
@@ -89,6 +90,9 @@ public enum TagType {
    * The byte id of this tag type.
    */
   private final byte id;
+  /**
+   * If this tag type is a {@link NumberTag number} type.
+   */
   private final boolean number;
   /**
    * The tag factory.
@@ -131,6 +135,11 @@ public enum TagType {
   @Nonnull
   Tag create() {
     return this.factory.get();
+  }
+
+  @Override
+  public boolean test(@Nonnull final TagType that) {
+    return this == that || (this.number && that.number);
   }
 
   @Nonnull

@@ -95,7 +95,7 @@ public final class CompoundTag extends Tag {
    */
   public boolean contains(@Nonnull final String key, @Nonnull final TagType type) {
     @Nullable final Tag tag = this.tags.get(key);
-    return tag != null && (tag.type() == type || (type.number() && tag.type().number()));
+    return tag != null && type.test(tag.type());
   }
 
   /**
@@ -405,6 +405,46 @@ public final class CompoundTag extends Tag {
       return (ListTag) this.tags.get(key);
     }
     return new ListTag();
+  }
+
+  /**
+   * Gets a list, ensuring that the type is the same as {@code type}.
+   *
+   * @param key the key
+   * @param expectedType the expected list type
+   * @return the list, or a new list if this compound does not contain a list tag
+   *     with the specified key, has a tag with a different type, or the {@link ListTag#listType() list type}
+   *     does not match {@code expectedType}
+   */
+  @Nonnull
+  public ListTag getList(@Nonnull final String key, @Nonnull final TagType expectedType) {
+    if(this.contains(key, TagType.LIST)) {
+      final ListTag tag = (ListTag) this.get(key);
+      if(expectedType.test(tag.listType())) {
+        return tag;
+      }
+    }
+    return new ListTag();
+  }
+
+  /**
+   * Gets a list, ensuring that the type is the same as {@code type}.
+   *
+   * @param key the key
+   * @param expectedType the expected list type
+   * @return the list, or {@code defaultValue} if this compound does not contain a list tag
+   *     with the specified key, has a tag with a different type, or the {@link ListTag#listType() list type}
+   *     does not match {@code expectedType}
+   */
+  @Nonnull
+  public ListTag getList(@Nonnull final String key, @Nonnull final TagType expectedType, @Nonnull final ListTag defaultValue) {
+    if(this.contains(key, TagType.LIST)) {
+      final ListTag tag = (ListTag) this.get(key);
+      if(expectedType.test(tag.listType())) {
+        return tag;
+      }
+    }
+    return defaultValue;
   }
 
   /**
