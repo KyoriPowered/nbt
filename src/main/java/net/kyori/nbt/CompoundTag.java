@@ -28,6 +28,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -432,6 +433,7 @@ public final class CompoundTag extends Tag {
    *
    * @param key the key
    * @param expectedType the expected list type
+   * @param defaultValue the default value
    * @return the list, or {@code defaultValue} if this compound does not contain a list tag
    *     with the specified key, has a tag with a different type, or the {@link ListTag#listType() list type}
    *     does not match {@code expectedType}
@@ -572,6 +574,92 @@ public final class CompoundTag extends Tag {
    */
   public void putLongArray(@Nonnull final String key, @Nonnull final long[] value) {
     this.tags.put(key, new LongArrayTag(value));
+  }
+
+  /**
+   * Gets a boolean.
+   *
+   * <p>A boolean is stored as a {@code byte} internally.</p>
+   *
+   * @param key the key
+   * @return the boolean, or {@code false} if this compound does not contain a boolean with
+   *     the specified key, or has a tag with a different type
+   */
+  public boolean getBoolean(@Nonnull final String key) {
+    return this.getBoolean(key, false);
+  }
+
+  /**
+   * Gets a boolean.
+   *
+   * <p>A boolean is stored as a {@code byte} internally.</p>
+   *
+   * @param key the key
+   * @param defaultValue the default value
+   * @return the boolean, or {@code defaultValue} if this compound does not contain a boolean with
+   *     the specified key, or has a tag with a different type
+   */
+  public boolean getBoolean(@Nonnull final String key, final boolean defaultValue) {
+    // >=, as this can be something other than a byte
+    return this.getByte(key, defaultValue ? ByteTag.TRUE : ByteTag.FALSE) >= ByteTag.TRUE;
+  }
+
+  /**
+   * Inserts a boolean.
+   *
+   * <p>A boolean is stored as a {@code byte} internally.</p>
+   *
+   * @param key the key
+   * @param value the value
+   */
+  public void putBoolean(@Nonnull final String key, final boolean value) {
+    this.putByte(key, value ? ByteTag.TRUE : ByteTag.FALSE);
+  }
+
+  /**
+   * Checks if this compound has a boolean tag with the specified key.
+   *
+   * @param key the key
+   * @return {@code true} if this compound has a boolean tag with the specified key
+   */
+  public boolean containsBoolean(@Nonnull final String key) {
+    return this.contains(key, TagType.BYTE);
+  }
+
+  /**
+   * Gets a unique id.
+   *
+   * <p>A unique id is stored as two {@code long}s internally.</p>
+   *
+   * @param key the key
+   * @return the unique id
+   */
+  @Nonnull
+  public UUID getUniqueId(@Nonnull final String key) {
+    return new UUID(this.getLong(key + "Least"), this.getLong(key + "Most"));
+  }
+
+  /**
+   * Inserts a unique id.
+   *
+   * <p>A unique id is stored as two {@code long}s internally.</p>
+   *
+   * @param key the key
+   * @param value the value
+   */
+  public void putUniqueId(@Nonnull final String key, @Nonnull final UUID value) {
+    this.putLong(key + "Least", value.getLeastSignificantBits());
+    this.putLong(key + "Most", value.getMostSignificantBits());
+  }
+
+  /**
+   * Checks if this compound has a unique id tag with the specified key.
+   *
+   * @param key the key
+   * @return {@code true} if this compound has a unique id tag with the specified key
+   */
+  public boolean containsUniqueId(@Nonnull final String key) {
+    return this.contains(key + "Least", TagType.LONG) && this.contains(key + "Most", TagType.LONG);
   }
 
   @Override

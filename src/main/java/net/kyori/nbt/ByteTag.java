@@ -35,6 +35,14 @@ import javax.annotation.Nonnull;
 public final class ByteTag extends NumberTag {
 
   /**
+   * A {@code byte} representing a {@code boolean} value of {@code false}.
+   */
+  static final byte FALSE = 0;
+  /**
+   * A {@code byte} representing a {@code boolean} value of {@code true}.
+   */
+  static final byte TRUE = 1;
+  /**
    * The byte value.
    */
   private byte value;
