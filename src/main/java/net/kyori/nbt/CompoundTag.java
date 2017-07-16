@@ -537,7 +537,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
    */
   @Nonnull
   public int[] getIntArray(@Nonnull final String key) {
-    if(this.contains(key, TagType.BYTE_ARRAY)) {
+    if(this.contains(key, TagType.INT_ARRAY)) {
       return ((IntArrayTag) this.tags.get(key)).value();
     }
     return new int[0];
@@ -552,7 +552,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
    */
   @Nonnull
   public int[] getIntArray(@Nonnull final String key, @Nonnull final int[] defaultValue) {
-    if(this.contains(key, TagType.BYTE_ARRAY)) {
+    if(this.contains(key, TagType.INT_ARRAY)) {
       return ((IntArrayTag) this.tags.get(key)).value();
     }
     return defaultValue;
