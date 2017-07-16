@@ -428,6 +428,24 @@ public final class ListTag extends Tag {
     return this.tags.remove(index);
   }
 
+  /**
+   * Gets the size of this list tag.
+   *
+   * @return the size
+   */
+  public int size() {
+    return this.tags.size();
+  }
+
+  /**
+   * Tests if this list tag is empty.
+   *
+   * @return {@code true} if this list tag is empty, {@code false} otherwise
+   */
+  public boolean isEmpty() {
+    return this.tags.isEmpty();
+  }
+
   @Override
   protected void read(final DataInput input, final int depth) throws IOException {
     if(depth > MAX_DEPTH) {
