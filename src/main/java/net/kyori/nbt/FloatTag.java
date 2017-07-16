@@ -93,6 +93,11 @@ public final class FloatTag extends NumberTag {
   }
 
   @Override
+  public FloatTag copy() {
+    return new FloatTag(this.value);
+  }
+
+  @Override
   public int hashCode() {
     return Float.hashCode(this.value);
   }

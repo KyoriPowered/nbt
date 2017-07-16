@@ -93,6 +93,11 @@ public final class DoubleTag extends NumberTag {
   }
 
   @Override
+  public DoubleTag copy() {
+    return new DoubleTag(this.value);
+  }
+
+  @Override
   public int hashCode() {
     return Double.hashCode(this.value);
   }

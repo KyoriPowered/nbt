@@ -470,6 +470,15 @@ public final class ListTag extends Tag implements CollectionTag {
   }
 
   @Override
+  public ListTag copy() {
+    final ListTag copy = new ListTag(this.type);
+    for(final Tag tag : this.tags) {
+      copy.tags.add(tag.copy()); // add directly to list, we can skip sanity checks
+    }
+    return copy;
+  }
+
+  @Override
   public int hashCode() {
     return this.tags.hashCode();
   }

@@ -93,6 +93,11 @@ public final class LongTag extends NumberTag {
   }
 
   @Override
+  public LongTag copy() {
+    return new LongTag(this.value);
+  }
+
+  @Override
   public int hashCode() {
     return Long.hashCode(this.value);
   }

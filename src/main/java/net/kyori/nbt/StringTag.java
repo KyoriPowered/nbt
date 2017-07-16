@@ -66,6 +66,11 @@ public final class StringTag extends Tag {
   }
 
   @Override
+  public StringTag copy() {
+    return new StringTag(this.value);
+  }
+
+  @Override
   public int hashCode() {
     return this.value.hashCode();
   }

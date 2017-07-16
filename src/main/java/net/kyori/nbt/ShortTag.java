@@ -93,6 +93,11 @@ public final class ShortTag extends NumberTag {
   }
 
   @Override
+  public ShortTag copy() {
+    return new ShortTag(this.value);
+  }
+
+  @Override
   public int hashCode() {
     return Short.hashCode(this.value);
   }

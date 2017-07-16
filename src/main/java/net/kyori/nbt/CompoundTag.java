@@ -729,6 +729,15 @@ public final class CompoundTag extends Tag implements CollectionTag {
   }
 
   @Override
+  public CompoundTag copy() {
+    final CompoundTag copy = new CompoundTag();
+    for(final Map.Entry<String, Tag> entry : this.tags.entrySet()) {
+      copy.put(entry.getKey(), entry.getValue().copy());
+    }
+    return copy;
+  }
+
+  @Override
   public int hashCode() {
     return this.tags.hashCode();
   }

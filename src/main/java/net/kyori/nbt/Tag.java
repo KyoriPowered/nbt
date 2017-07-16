@@ -59,6 +59,13 @@ public abstract class Tag {
   @Nonnull
   public abstract TagType type();
 
+  /**
+   * Creates a copy of this tag.
+   *
+   * @return a copy of this tag
+   */
+  public abstract Tag copy();
+
   @Override
   public abstract int hashCode();
 

@@ -52,6 +52,11 @@ public final class EndTag extends Tag {
   }
 
   @Override
+  public EndTag copy() {
+    return this; // end tags have no data
+  }
+
+  @Override
   public int hashCode() {
     return TagType.END.hashCode();
   }

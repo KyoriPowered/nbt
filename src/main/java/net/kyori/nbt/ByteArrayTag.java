@@ -77,6 +77,13 @@ public final class ByteArrayTag extends Tag {
   }
 
   @Override
+  public ByteArrayTag copy() {
+    final byte[] value = new byte[this.value.length];
+    System.arraycopy(this.value, 0, value, 0, this.value.length);
+    return new ByteArrayTag(value);
+  }
+
+  @Override
   public int hashCode() {
     return Arrays.hashCode(this.value);
   }

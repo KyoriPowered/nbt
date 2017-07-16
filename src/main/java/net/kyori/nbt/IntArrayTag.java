@@ -81,6 +81,13 @@ public final class IntArrayTag extends Tag {
   }
 
   @Override
+  public IntArrayTag copy() {
+    final int[] value = new int[this.value.length];
+    System.arraycopy(this.value, 0, value, 0, this.value.length);
+    return new IntArrayTag(value);
+  }
+
+  @Override
   public int hashCode() {
     return Arrays.hashCode(this.value);
   }

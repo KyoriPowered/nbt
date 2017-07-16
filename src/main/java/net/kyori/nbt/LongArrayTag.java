@@ -81,6 +81,13 @@ public final class LongArrayTag extends Tag {
   }
 
   @Override
+  public LongArrayTag copy() {
+    final long[] value = new long[this.value.length];
+    System.arraycopy(this.value, 0, value, 0, this.value.length);
+    return new LongArrayTag(value);
+  }
+
+  @Override
   public int hashCode() {
     return Arrays.hashCode(this.value);
   }

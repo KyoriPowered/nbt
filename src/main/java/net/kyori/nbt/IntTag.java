@@ -93,6 +93,11 @@ public final class IntTag extends NumberTag {
   }
 
   @Override
+  public IntTag copy() {
+    return new IntTag(this.value);
+  }
+
+  @Override
   public int hashCode() {
     return Integer.hashCode(this.value);
   }

@@ -101,6 +101,11 @@ public final class ByteTag extends NumberTag {
   }
 
   @Override
+  public ByteTag copy() {
+    return new ByteTag(this.value);
+  }
+
+  @Override
   public int hashCode() {
     return Byte.hashCode(this.value);
   }
