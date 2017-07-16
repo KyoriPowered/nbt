@@ -152,7 +152,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
    */
   public byte getByte(@Nonnull final String key, final byte defaultValue) {
     if(this.contains(key, TagType.BYTE)) {
-      return ((ByteTag) this.tags.get(key)).byteValue();
+      return ((NumberTag) this.tags.get(key)).byteValue();
     }
     return defaultValue;
   }
@@ -188,7 +188,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
    */
   public short getShort(@Nonnull final String key, final short defaultValue) {
     if(this.contains(key, TagType.SHORT)) {
-      return ((ShortTag) this.tags.get(key)).shortValue();
+      return ((NumberTag) this.tags.get(key)).shortValue();
     }
     return defaultValue;
   }
@@ -224,7 +224,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
    */
   public int getInt(@Nonnull final String key, final int defaultValue) {
     if(this.contains(key, TagType.INT)) {
-      return ((IntTag) this.tags.get(key)).intValue();
+      return ((NumberTag) this.tags.get(key)).intValue();
     }
     return defaultValue;
   }
@@ -260,7 +260,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
    */
   public long getLong(@Nonnull final String key, final long defaultValue) {
     if(this.contains(key, TagType.LONG)) {
-      return ((LongTag) this.tags.get(key)).longValue();
+      return ((NumberTag) this.tags.get(key)).longValue();
     }
     return defaultValue;
   }
@@ -296,7 +296,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
    */
   public float getFloat(@Nonnull final String key, final float defaultValue) {
     if(this.contains(key, TagType.FLOAT)) {
-      return ((FloatTag) this.tags.get(key)).floatValue();
+      return ((NumberTag) this.tags.get(key)).floatValue();
     }
     return defaultValue;
   }
@@ -332,7 +332,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
    */
   public double getDouble(@Nonnull final String key, final double defaultValue) {
     if(this.contains(key, TagType.DOUBLE)) {
-      return ((DoubleTag) this.tags.get(key)).doubleValue();
+      return ((NumberTag) this.tags.get(key)).doubleValue();
     }
     return defaultValue;
   }
