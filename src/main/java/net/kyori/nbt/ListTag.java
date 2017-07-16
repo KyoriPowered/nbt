@@ -35,7 +35,7 @@ import javax.annotation.Nonnull;
 /**
  * A list tag.
  */
-public final class ListTag extends Tag {
+public final class ListTag extends Tag implements CollectionTag {
 
   /**
    * The maximum depth.
@@ -428,20 +428,12 @@ public final class ListTag extends Tag {
     return this.tags.remove(index);
   }
 
-  /**
-   * Gets the size of this list tag.
-   *
-   * @return the size
-   */
+  @Override
   public int size() {
     return this.tags.size();
   }
 
-  /**
-   * Tests if this list tag is empty.
-   *
-   * @return {@code true} if this list tag is empty, {@code false} otherwise
-   */
+  @Override
   public boolean isEmpty() {
     return this.tags.isEmpty();
   }

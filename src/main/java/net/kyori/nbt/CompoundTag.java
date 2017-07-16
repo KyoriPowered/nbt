@@ -28,6 +28,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.Nonnull;
@@ -36,7 +37,7 @@ import javax.annotation.Nullable;
 /**
  * A compound tag.
  */
-public final class CompoundTag extends Tag {
+public final class CompoundTag extends Tag implements CollectionTag {
 
   /**
    * The maximum depth.
@@ -87,6 +88,25 @@ public final class CompoundTag extends Tag {
     return this.tags.containsKey(key);
   }
 
+  @Override
+  public int size() {
+    return this.tags.size();
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return this.tags.isEmpty();
+  }
+
+  /**
+   * Gets a set of keys of the entries in this compound tag.
+   *
+   * @return a set of keys
+   */
+  public Set<String> keySet() {
+    return this.tags.keySet();
+  }
+
   /**
    * Checks if this compound has a tag with the specified key and type.
    *
@@ -97,6 +117,18 @@ public final class CompoundTag extends Tag {
   public boolean contains(@Nonnull final String key, @Nonnull final TagType type) {
     @Nullable final Tag tag = this.tags.get(key);
     return tag != null && type.test(tag.type());
+  }
+
+  /**
+   * Gets the tag type of the tag with the specified key.
+   *
+   * @param key the key
+   * @return the tag type, or {@link TagType#END}
+   */
+  @Nonnull
+  public TagType type(@Nonnull final String key) {
+    @Nullable final Tag tag = this.tags.get(key);
+    return tag != null ? tag.type() : TagType.END;
   }
 
   /**
