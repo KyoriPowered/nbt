@@ -81,7 +81,7 @@ public class BigTest {
   @BeforeClass
   public static void before() throws IOException, URISyntaxException {
     final URL url = BigTest.class.getResource("/bigtest.nbt");
-    compound = TagIO.readCompressed(Paths.get(url.toURI()));
+    compound = TagIO.readCompressedPath(Paths.get(url.toURI()));
   }
 
   @Test
