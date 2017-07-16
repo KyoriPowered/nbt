@@ -114,7 +114,7 @@ public enum TagType implements Predicate<TagType> {
    *
    * @return the byte id
    */
-  byte id() {
+  public byte id() {
     return this.id;
   }
 
@@ -123,7 +123,7 @@ public enum TagType implements Predicate<TagType> {
    *
    * @return {@code true} if a number type, {@code false} if not
    */
-  boolean number() {
+  public boolean number() {
     return this.number;
   }
 
@@ -142,6 +142,13 @@ public enum TagType implements Predicate<TagType> {
     return this == that || (this.number && that.number);
   }
 
+  /**
+   * Gets the tag type for the specified id.
+   *
+   * @param id the id
+   * @return the tag type
+   * @throws ArrayIndexOutOfBoundsException if the id is not without bounds
+   */
   @Nonnull
   static TagType of(final byte id) {
     return TYPES[id];
