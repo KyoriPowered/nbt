@@ -82,7 +82,7 @@ public final class TagIO {
     }
     input.skipBytes(input.readUnsignedShort()); // read empty name
     final Tag tag = type.create();
-    tag.read(input);
+    tag.read(input, 0); // initial depth is zero
     return (CompoundTag) tag;
   }
 

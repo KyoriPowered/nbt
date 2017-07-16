@@ -38,7 +38,7 @@ public final class EndTag extends Tag {
   }
 
   @Override
-  protected void read(final DataInput input) throws IOException {
+  protected void read(final DataInput input, final int depth) throws IOException {
   }
 
   @Override

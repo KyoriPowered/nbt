@@ -38,6 +38,10 @@ import javax.annotation.Nonnull;
 public final class ListTag extends Tag {
 
   /**
+   * The maximum depth.
+   */
+  public static final int MAX_DEPTH = 512;
+  /**
    * The list of tags.
    */
   private final List<Tag> tags = new ArrayList<>();
@@ -425,13 +429,17 @@ public final class ListTag extends Tag {
   }
 
   @Override
-  protected void read(final DataInput input) throws IOException {
+  protected void read(final DataInput input, final int depth) throws IOException {
+    if(depth > MAX_DEPTH) {
+      throw new IllegalStateException(String.format("Depth of %d is higher than max of %d", depth, MAX_DEPTH));
+    }
+
     this.type = TagType.of(input.readByte());
 
     final int length = input.readInt();
     for(int i = 0; i < length; i++) {
       final Tag tag = this.type.create();
-      tag.read(input);
+      tag.read(input, depth + 1);
       this.tags.add(tag);
     }
   }

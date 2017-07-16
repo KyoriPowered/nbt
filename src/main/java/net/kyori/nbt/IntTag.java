@@ -77,7 +77,7 @@ public final class IntTag extends NumberTag {
   }
 
   @Override
-  protected void read(final DataInput input) throws IOException {
+  protected void read(final DataInput input, final int depth) throws IOException {
     this.value = input.readInt();
   }
 

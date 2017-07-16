@@ -77,7 +77,7 @@ public final class ShortTag extends NumberTag {
   }
 
   @Override
-  protected void read(final DataInput input) throws IOException {
+  protected void read(final DataInput input, final int depth) throws IOException {
     this.value = input.readShort();
   }
 

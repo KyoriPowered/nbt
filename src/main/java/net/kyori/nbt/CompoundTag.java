@@ -38,6 +38,10 @@ import javax.annotation.Nullable;
 public final class CompoundTag extends Tag {
 
   /**
+   * The maximum depth.
+   */
+  public static final int MAX_DEPTH = 512;
+  /**
    * The map of tags.
    */
   private final Map<String, Tag> tags = new HashMap<>();
@@ -531,12 +535,16 @@ public final class CompoundTag extends Tag {
   }
 
   @Override
-  protected void read(final DataInput input) throws IOException {
+  protected void read(final DataInput input, final int depth) throws IOException {
+    if(depth > MAX_DEPTH) {
+      throw new IllegalStateException(String.format("Depth of %d is higher than max of %d", depth, MAX_DEPTH));
+    }
+
     TagType type;
     while((type = TagType.of(input.readByte())) != TagType.END) {
       final String key = input.readUTF();
       final Tag tag = type.create();
-      tag.read(input);
+      tag.read(input, depth + 1);
       this.tags.put(key, tag);
     }
   }

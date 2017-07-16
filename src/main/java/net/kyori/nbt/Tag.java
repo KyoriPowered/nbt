@@ -38,9 +38,10 @@ public abstract class Tag {
    * Reads the value of this tag from {@code input}.
    *
    * @param input the input
+   * @param depth the depth
    * @throws IOException if an exception was encountered while reading
    */
-  protected abstract void read(final DataInput input) throws IOException;
+  protected abstract void read(final DataInput input, final int depth) throws IOException;
 
   /**
    * Writes the value of this tag to {@code output}.

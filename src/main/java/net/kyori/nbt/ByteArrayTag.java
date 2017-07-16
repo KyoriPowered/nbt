@@ -58,7 +58,7 @@ public final class ByteArrayTag extends Tag {
   }
 
   @Override
-  protected void read(final DataInput input) throws IOException {
+  protected void read(final DataInput input, final int depth) throws IOException {
     final int length = input.readInt();
     this.value = new byte[length];
     input.readFully(this.value);
