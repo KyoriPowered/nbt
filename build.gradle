@@ -1,8 +1,8 @@
 plugins {
-    id 'java'
-    id 'maven'
-    id 'signing'
-    id 'net.minecrell.licenser' version '0.3'
+  id 'java'
+  id 'maven'
+  id 'signing'
+  id 'net.minecrell.licenser' version '0.3'
 }
 
 group 'net.kyori'
@@ -12,83 +12,97 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 tasks.withType(JavaCompile) {
-    options.compilerArgs += ['-Xlint:all', '-Xlint:-path', '-parameters']
-    options.deprecation = true
-    options.encoding = 'UTF-8'
+  options.compilerArgs += ['-Xlint:all', '-Xlint:-path', '-parameters']
+  options.deprecation = true
+  options.encoding = 'UTF-8'
 }
 
 license {
-    header project.file('header.txt')
-    include '**/*.java'
-    newLine false
+  header project.file('header.txt')
+  include '**/*.java'
+  newLine false
 }
 
 repositories {
-    mavenLocal()
-    mavenCentral()
+  mavenLocal()
+  mavenCentral()
 }
 
 dependencies {
-    compile 'com.google.code.findbugs:jsr305:3.0.2'
-    testCompile 'junit:junit:4.12'
+  compile 'com.google.code.findbugs:jsr305:3.0.2'
+  testCompile 'junit:junit:4.12'
 }
 
 task javadocJar(type: Jar) {
-    classifier 'javadoc'
-    from javadoc
+  classifier 'javadoc'
+  from javadoc
 }
 
 task sourcesJar(type: Jar) {
-    classifier 'sources'
-    from sourceSets.main.allSource
+  classifier 'sources'
+  from sourceSets.main.allSource
 }
 
 artifacts {
-    archives javadocJar
-    archives sourcesJar
+  archives javadocJar
+  archives sourcesJar
 }
 
 signing {
-    required { !project.version.endsWith('-SNAPSHOT') && gradle.taskGraph.hasTask('uploadArchives') }
-    sign configurations.archives
+  required { !project.version.endsWith('-SNAPSHOT') && gradle.taskGraph.hasTask(':uploadArchives') }
+  sign configurations.archives
 }
 
-if(project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+jar {
+  manifest.attributes(
+    'Automatic-Module-Name': 'net.kyori.text'
+  )
+}
 
-                repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-                    authentication(userName: sonatypeUsername, password: sonatypePassword)
-                }
+if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
+  uploadArchives {
+    repositories {
+      mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-                snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-                    authentication(userName: sonatypeUsername, password: sonatypePassword)
-                }
-
-                pom.project {
-                    name project.name
-
-                    issueManagement {
-                        system 'GitHub Issues'
-                        url 'https://github.com/KyoriPowered/nbt/issues'
-                    }
-
-                    licenses {
-                        license {
-                            name 'MIT License'
-                            url 'https://opensource.org/licenses/MIT'
-                        }
-                    }
-
-                    scm {
-                        connection 'scm:git@github.com:KyoriPowered/nbt.git'
-                        developerConnection 'scm:git@github.com:KyoriPowered/nbt.git'
-                        url 'https://github.com/KyoriPowered/nbt/'
-                    }
-                }
-            }
+        repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+          authentication(userName: sonatypeUsername, password: sonatypePassword)
         }
+
+        snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
+          authentication(userName: sonatypeUsername, password: sonatypePassword)
+        }
+
+        pom.project {
+          description 'An NBT library for Minecraft.'
+          name project.name
+          url 'https://github.com/KyoriPowered/nbt/'
+
+          developers {
+            developer {
+              name 'kashike'
+            }
+          }
+
+          issueManagement {
+            system 'GitHub Issues'
+            url 'https://github.com/KyoriPowered/nbt/issues'
+          }
+
+          licenses {
+            license {
+              name 'MIT License'
+              url 'https://opensource.org/licenses/MIT'
+            }
+          }
+
+          scm {
+            connection 'scm:git@github.com:KyoriPowered/nbt.git'
+            developerConnection 'scm:git@github.com:KyoriPowered/nbt.git'
+            url 'https://github.com/KyoriPowered/nbt/'
+          }
+        }
+      }
     }
+  }
 }
