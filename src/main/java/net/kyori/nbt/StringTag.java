@@ -23,12 +23,12 @@
  */
 package net.kyori.nbt;
 
+import net.kyori.blizzard.NonNull;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Objects;
-
-import javax.annotation.Nonnull;
 
 /**
  * A tag representing a {@link String}.
@@ -40,11 +40,11 @@ public final class StringTag extends Tag {
   StringTag() {
   }
 
-  public StringTag(@Nonnull final String value) {
+  public StringTag(@NonNull final String value) {
     this.value = value;
   }
 
-  @Nonnull
+  @NonNull
   public String value() {
     return this.value;
   }
@@ -59,7 +59,7 @@ public final class StringTag extends Tag {
     output.writeUTF(this.value);
   }
 
-  @Nonnull
+  @NonNull
   @Override
   public TagType type() {
     return TagType.STRING;

@@ -23,11 +23,11 @@
  */
 package net.kyori.nbt;
 
+import net.kyori.blizzard.NonNull;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-
-import javax.annotation.Nonnull;
 
 /**
  * An end tag.
@@ -45,7 +45,7 @@ public final class EndTag extends Tag {
   protected void write(final DataOutput output) throws IOException {
   }
 
-  @Nonnull
+  @NonNull
   @Override
   public TagType type() {
     return TagType.END;

@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'net.kyori'
-version '1.12-SNAPSHOT'
+version '1.12-1.0.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.google.code.findbugs:jsr305:3.0.2'
+  compile 'net.kyori:blizzard:1.0.4-JDK8144185'
   testCompile 'junit:junit:4.12'
 }
 
@@ -49,18 +49,20 @@ artifacts {
 }
 
 signing {
-  required { !project.version.endsWith('-SNAPSHOT') && gradle.taskGraph.hasTask(':uploadArchives') }
+  required { !project.version.endsWith('-SNAPSHOT') && gradle.taskGraph.hasTask(':uploadArchives') && project.hasProperty('signing.keyId') }
   sign configurations.archives
 }
 
 jar {
   manifest.attributes(
-    'Automatic-Module-Name': 'net.kyori.text'
+    'Automatic-Module-Name': 'net.kyori.nbt'
   )
 }
 
 if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
   uploadArchives {
+    enabled = System.getenv('TRAVIS') == null || project.version.endsWith('-SNAPSHOT')
+
     repositories {
       mavenDeployer {
         beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }

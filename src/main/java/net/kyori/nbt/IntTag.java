@@ -23,11 +23,11 @@
  */
 package net.kyori.nbt;
 
+import net.kyori.blizzard.NonNull;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-
-import javax.annotation.Nonnull;
 
 /**
  * A tag representing an {@code int}.
@@ -86,7 +86,7 @@ public final class IntTag extends NumberTag {
     output.writeInt(this.value);
   }
 
-  @Nonnull
+  @NonNull
   @Override
   public TagType type() {
     return TagType.INT;

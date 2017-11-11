@@ -23,14 +23,14 @@
  */
 package net.kyori.nbt;
 
+import net.kyori.blizzard.NonNegative;
+import net.kyori.blizzard.NonNull;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
 
 /**
  * A list tag.
@@ -48,13 +48,13 @@ public final class ListTag extends Tag implements CollectionTag {
   /**
    * The type of this list.
    */
-  @Nonnull private TagType type;
+  @NonNull private TagType type;
 
   public ListTag() {
     this(TagType.END);
   }
 
-  public ListTag(@Nonnull final TagType type) {
+  public ListTag(@NonNull final TagType type) {
     this.type = type;
   }
 
@@ -63,7 +63,7 @@ public final class ListTag extends Tag implements CollectionTag {
    *
    * @return the type
    */
-  @Nonnull
+  @NonNull
   public TagType listType() {
     return this.type;
   }
@@ -75,8 +75,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @return the tag
    * @throws IndexOutOfBoundsException if the index is out of range
    */
-  @Nonnull
-  public Tag get(@Nonnegative final int index) {
+  @NonNull
+  public Tag get(@NonNegative final int index) {
     return this.tags.get(index);
   }
 
@@ -86,7 +86,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the byte value, or {@code 0}
    */
-  public byte getByte(@Nonnegative final int index) {
+  public byte getByte(@NonNegative final int index) {
     return this.getByte(index, (byte) 0);
   }
 
@@ -97,7 +97,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the byte value, or {@code defaultValue}
    */
-  public byte getByte(@Nonnegative final int index, final byte defaultValue) {
+  public byte getByte(@NonNegative final int index, final byte defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type().number()) {
       return ((NumberTag) tag).byteValue();
@@ -111,7 +111,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the short value, or {@code 0}
    */
-  public short getShort(@Nonnegative final int index) {
+  public short getShort(@NonNegative final int index) {
     return this.getShort(index, (short) 0);
   }
 
@@ -122,7 +122,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the short value, or {@code defaultValue}
    */
-  public short getShort(@Nonnegative final int index, final short defaultValue) {
+  public short getShort(@NonNegative final int index, final short defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type().number()) {
       return ((NumberTag) tag).shortValue();
@@ -136,7 +136,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the int value, or {@code 0}
    */
-  public int getInt(@Nonnegative final int index) {
+  public int getInt(@NonNegative final int index) {
     return this.getInt(index, 0);
   }
 
@@ -147,7 +147,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the int value, or {@code defaultValue}
    */
-  public int getInt(@Nonnegative final int index, final int defaultValue) {
+  public int getInt(@NonNegative final int index, final int defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type().number()) {
       return ((NumberTag) tag).intValue();
@@ -161,7 +161,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the long value, or {@code 0}
    */
-  public long getLong(@Nonnegative final int index) {
+  public long getLong(@NonNegative final int index) {
     return this.getLong(index, 0L);
   }
 
@@ -172,7 +172,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the long value, or {@code defaultValue}
    */
-  public long getLong(@Nonnegative final int index, final long defaultValue) {
+  public long getLong(@NonNegative final int index, final long defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type().number()) {
       return ((NumberTag) tag).longValue();
@@ -186,7 +186,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the float value, or {@code 0}
    */
-  public float getFloat(@Nonnegative final int index) {
+  public float getFloat(@NonNegative final int index) {
     return this.getFloat(index, 0f);
   }
 
@@ -197,7 +197,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the float value, or {@code defaultValue}
    */
-  public float getFloat(@Nonnegative final int index, final float defaultValue) {
+  public float getFloat(@NonNegative final int index, final float defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type().number()) {
       return ((NumberTag) tag).floatValue();
@@ -211,7 +211,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the double value, or {@code 0}
    */
-  public double getDouble(@Nonnegative final int index) {
+  public double getDouble(@NonNegative final int index) {
     return this.getDouble(index, 0d);
   }
 
@@ -222,7 +222,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the double value, or {@code defaultValue}
    */
-  public double getDouble(@Nonnegative final int index, final double defaultValue) {
+  public double getDouble(@NonNegative final int index, final double defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type().number()) {
       return ((NumberTag) tag).doubleValue();
@@ -236,8 +236,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the array of bytes, or a zero-length array
    */
-  @Nonnull
-  public byte[] getByteArray(@Nonnegative final int index) {
+  @NonNull
+  public byte[] getByteArray(@NonNegative final int index) {
     final Tag tag = this.get(index);
     if(tag.type() == TagType.BYTE_ARRAY) {
       return ((ByteArrayTag) tag).value();
@@ -252,8 +252,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the array of bytes, or {@code defaultValue}
    */
-  @Nonnull
-  public byte[] getByteArray(@Nonnegative final int index, @Nonnull final byte[] defaultValue) {
+  @NonNull
+  public byte[] getByteArray(@NonNegative final int index, @NonNull final byte[] defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type() == TagType.BYTE_ARRAY) {
       return ((ByteArrayTag) tag).value();
@@ -267,8 +267,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the string value, or {@code ""}
    */
-  @Nonnull
-  public String getString(@Nonnegative final int index) {
+  @NonNull
+  public String getString(@NonNegative final int index) {
     return this.getString(index, "");
   }
 
@@ -279,8 +279,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the string value, or {@code defaultValue}
    */
-  @Nonnull
-  public String getString(@Nonnegative final int index, @Nonnull final String defaultValue) {
+  @NonNull
+  public String getString(@NonNegative final int index, @NonNull final String defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type() == TagType.STRING) {
       return ((StringTag) tag).value();
@@ -294,8 +294,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the compound, or a new compound
    */
-  @Nonnull
-  public CompoundTag getCompound(@Nonnegative final int index) {
+  @NonNull
+  public CompoundTag getCompound(@NonNegative final int index) {
     final Tag tag = this.get(index);
     if(tag.type() == TagType.COMPOUND) {
       return (CompoundTag) tag;
@@ -310,8 +310,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the compound, or {@code defaultValue}
    */
-  @Nonnull
-  public CompoundTag getCompound(@Nonnegative final int index, @Nonnull final CompoundTag defaultValue) {
+  @NonNull
+  public CompoundTag getCompound(@NonNegative final int index, @NonNull final CompoundTag defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type() == TagType.COMPOUND) {
       return (CompoundTag) tag;
@@ -325,7 +325,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the array of ints, or a zero-length array
    */
-  public int[] getIntArray(@Nonnegative final int index) {
+  public int[] getIntArray(@NonNegative final int index) {
     final Tag tag = this.get(index);
     if(tag.type() == TagType.INT_ARRAY) {
       return ((IntArrayTag) tag).value();
@@ -340,8 +340,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the array of ints, or {@code defaultValue}
    */
-  @Nonnull
-  public int[] getIntArray(@Nonnegative final int index, @Nonnull final int[] defaultValue) {
+  @NonNull
+  public int[] getIntArray(@NonNegative final int index, @NonNull final int[] defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type() == TagType.INT_ARRAY) {
       return ((IntArrayTag) tag).value();
@@ -355,8 +355,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param index the index
    * @return the array of longs, or a zero-length array
    */
-  @Nonnull
-  public long[] getLongArray(@Nonnegative final int index) {
+  @NonNull
+  public long[] getLongArray(@NonNegative final int index) {
     final Tag tag = this.get(index);
     if(tag.type() == TagType.LONG_ARRAY) {
       return ((LongArrayTag) tag).value();
@@ -371,8 +371,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param defaultValue the default value
    * @return the array of longs, or {@code defaultValue}
    */
-  @Nonnull
-  public long[] getLongArray(@Nonnegative final int index, @Nonnull final long[] defaultValue) {
+  @NonNull
+  public long[] getLongArray(@NonNegative final int index, @NonNull final long[] defaultValue) {
     final Tag tag = this.get(index);
     if(tag.type() == TagType.LONG_ARRAY) {
       return ((LongArrayTag) tag).value();
@@ -385,7 +385,7 @@ public final class ListTag extends Tag implements CollectionTag {
    *
    * @param tag the tag
    */
-  public void add(@Nonnull final Tag tag) {
+  public void add(@NonNull final Tag tag) {
     // don't allow an end tag to be added
     if(tag.type() == TagType.END) {
       throw new IllegalArgumentException(String.format("Cannot add a '%s' to a '%s'", EndTag.class.getSimpleName(), ListTag.class.getSimpleName()));
@@ -404,7 +404,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param tag the tag
    * @throws IndexOutOfBoundsException if the index is out of range
    */
-  public void set(final int index, @Nonnull final Tag tag) {
+  public void set(final int index, @NonNull final Tag tag) {
     // don't allow an end tag to be added
     if(tag.type() == TagType.END) {
       throw new IllegalArgumentException(String.format("Cannot add a '%s' to a '%s'", EndTag.class.getSimpleName(), ListTag.class.getSimpleName()));
@@ -423,7 +423,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @return the tag
    * @throws IndexOutOfBoundsException if the index is out of range
    */
-  @Nonnull
+  @NonNull
   public Tag remove(final int index) {
     return this.tags.remove(index);
   }
@@ -463,7 +463,7 @@ public final class ListTag extends Tag implements CollectionTag {
     }
   }
 
-  @Nonnull
+  @NonNull
   @Override
   public TagType type() {
     return TagType.LIST;

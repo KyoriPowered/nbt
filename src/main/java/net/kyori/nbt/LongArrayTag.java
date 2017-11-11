@@ -23,12 +23,12 @@
  */
 package net.kyori.nbt;
 
+import net.kyori.blizzard.NonNull;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Arrays;
-
-import javax.annotation.Nonnull;
 
 /**
  * A tag representing an array of {@code long}s.
@@ -43,7 +43,7 @@ public final class LongArrayTag extends Tag {
   LongArrayTag() {
   }
 
-  public LongArrayTag(@Nonnull final long[] value) {
+  public LongArrayTag(@NonNull final long[] value) {
     this.value = value;
   }
 
@@ -52,7 +52,7 @@ public final class LongArrayTag extends Tag {
    *
    * @return the array of longs
    */
-  @Nonnull
+  @NonNull
   public long[] value() {
     return this.value;
   }
@@ -74,7 +74,7 @@ public final class LongArrayTag extends Tag {
     }
   }
 
-  @Nonnull
+  @NonNull
   @Override
   public TagType type() {
     return TagType.LONG_ARRAY;

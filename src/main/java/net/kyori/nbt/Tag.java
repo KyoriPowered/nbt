@@ -23,11 +23,11 @@
  */
 package net.kyori.nbt;
 
+import net.kyori.blizzard.NonNull;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-
-import javax.annotation.Nonnull;
 
 /**
  * A tag.
@@ -56,7 +56,7 @@ public abstract class Tag {
    *
    * @return the type
    */
-  @Nonnull
+  @NonNull
   public abstract TagType type();
 
   /**

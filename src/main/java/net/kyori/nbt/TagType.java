@@ -23,10 +23,10 @@
  */
 package net.kyori.nbt;
 
+import net.kyori.blizzard.NonNull;
+
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-
-import javax.annotation.Nonnull;
 
 /**
  * An enumeration of tag types.
@@ -97,13 +97,13 @@ public enum TagType implements Predicate<TagType> {
   /**
    * The tag factory.
    */
-  @Nonnull private final Supplier<Tag> factory;
+  @NonNull private final Supplier<Tag> factory;
 
-  TagType(final byte id, @Nonnull final Supplier<Tag> factory) {
+  TagType(final byte id, @NonNull final Supplier<Tag> factory) {
     this(id, false, factory);
   }
 
-  TagType(final byte id, final boolean number, @Nonnull final Supplier<Tag> factory) {
+  TagType(final byte id, final boolean number, @NonNull final Supplier<Tag> factory) {
     this.id = id;
     this.number = number;
     this.factory = factory;
@@ -132,13 +132,13 @@ public enum TagType implements Predicate<TagType> {
    *
    * @return a new tag
    */
-  @Nonnull
+  @NonNull
   Tag create() {
     return this.factory.get();
   }
 
   @Override
-  public boolean test(@Nonnull final TagType that) {
+  public boolean test(@NonNull final TagType that) {
     return this == that || (this.number && that.number);
   }
 
@@ -149,7 +149,7 @@ public enum TagType implements Predicate<TagType> {
    * @return the tag type
    * @throws ArrayIndexOutOfBoundsException if the id is not without bounds
    */
-  @Nonnull
+  @NonNull
   static TagType of(final byte id) {
     return TYPES[id];
   }

@@ -23,12 +23,12 @@
  */
 package net.kyori.nbt;
 
+import net.kyori.blizzard.NonNull;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Arrays;
-
-import javax.annotation.Nonnull;
 
 /**
  * A tag representing an array of {@code byte}s.
@@ -43,7 +43,7 @@ public final class ByteArrayTag extends Tag {
   ByteArrayTag() {
   }
 
-  public ByteArrayTag(@Nonnull final byte[] value) {
+  public ByteArrayTag(@NonNull final byte[] value) {
     this.value = value;
   }
 
@@ -52,7 +52,7 @@ public final class ByteArrayTag extends Tag {
    *
    * @return the array of bytes
    */
-  @Nonnull
+  @NonNull
   public byte[] value() {
     return this.value;
   }
@@ -70,7 +70,7 @@ public final class ByteArrayTag extends Tag {
     output.write(this.value);
   }
 
-  @Nonnull
+  @NonNull
   @Override
   public TagType type() {
     return TagType.BYTE_ARRAY;
