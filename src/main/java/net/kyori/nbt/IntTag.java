@@ -33,7 +33,6 @@ import java.io.IOException;
  * A tag representing an {@code int}.
  */
 public final class IntTag extends NumberTag {
-
   /**
    * The int value.
    */

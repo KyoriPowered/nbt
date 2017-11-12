@@ -34,7 +34,6 @@ import java.util.Arrays;
  * A tag representing an array of {@code int}s.
  */
 public final class IntArrayTag extends Tag {
-
   /**
    * The array of ints.
    */

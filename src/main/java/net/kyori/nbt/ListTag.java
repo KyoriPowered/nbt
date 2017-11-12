@@ -36,7 +36,6 @@ import java.util.List;
  * A list tag.
  */
 public final class ListTag extends Tag implements CollectionTag {
-
   /**
    * The maximum depth.
    */
@@ -56,6 +55,34 @@ public final class ListTag extends Tag implements CollectionTag {
 
   public ListTag(@NonNull final TagType type) {
     this.type = type;
+  }
+
+  /**
+   * Creates a list tag with some double values.
+   *
+   * @param values the double values
+   * @return the list tag
+   */
+  public static ListTag ofDoubles(final double... values) {
+    final ListTag tag = new ListTag();
+    for(final double value : values) {
+      tag.add(new DoubleTag(value));
+    }
+    return tag;
+  }
+
+  /**
+   * Creates a list tag with some float values.
+   *
+   * @param values the float values
+   * @return the list tag
+   */
+  public static ListTag ofFloats(final float... values) {
+    final ListTag tag = new ListTag();
+    for(final float value : values) {
+      tag.add(new FloatTag(value));
+    }
+    return tag;
   }
 
   /**

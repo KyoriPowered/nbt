@@ -33,7 +33,6 @@ import java.io.IOException;
  * An end tag.
  */
 public final class EndTag extends Tag {
-
   EndTag() {
   }
 

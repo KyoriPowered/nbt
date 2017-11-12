@@ -33,7 +33,6 @@ import java.io.IOException;
  * A tag representing a {@code double}.
  */
 public final class DoubleTag extends NumberTag {
-
   /**
    * The double value.
    */

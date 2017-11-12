@@ -33,7 +33,6 @@ import java.io.IOException;
  * A tag representing a {@code long}.
  */
 public final class LongTag extends NumberTag {
-
   /**
    * The long value.
    */

@@ -34,7 +34,6 @@ import java.util.Objects;
  * A tag representing a {@link String}.
  */
 public final class StringTag extends Tag {
-
   private String value;
 
   StringTag() {

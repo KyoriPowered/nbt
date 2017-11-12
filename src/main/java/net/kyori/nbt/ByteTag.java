@@ -33,7 +33,6 @@ import java.io.IOException;
  * A tag representing a {@code byte}.
  */
 public final class ByteTag extends NumberTag {
-
   /**
    * A {@code byte} representing a {@code boolean} value of {@code false}.
    */

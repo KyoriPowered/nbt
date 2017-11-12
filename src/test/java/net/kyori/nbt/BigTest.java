@@ -38,7 +38,6 @@ import static org.junit.Assert.assertEquals;
  * Ensure that we can read the bigtest.nbt file.
  */
 public class BigTest {
-
   private static final double DOUBLE_DELTA = 1e-15;
   private static final byte[] BYTE_ARRAY_TEST = new byte[1000];
   private static final ListTag LONG_LIST = new ListTag();

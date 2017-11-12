@@ -38,7 +38,6 @@ import java.util.UUID;
  * A compound tag.
  */
 public final class CompoundTag extends Tag implements CollectionTag {
-
   /**
    * The maximum depth.
    */

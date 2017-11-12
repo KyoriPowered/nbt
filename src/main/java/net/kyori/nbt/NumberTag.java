@@ -27,7 +27,6 @@ package net.kyori.nbt;
  * A number tag.
  */
 public abstract class NumberTag extends Tag {
-
   /**
    * Gets the byte value.
    *

@@ -33,7 +33,6 @@ import java.io.IOException;
  * A tag.
  */
 public abstract class Tag {
-
   /**
    * Reads the value of this tag from {@code input}.
    *

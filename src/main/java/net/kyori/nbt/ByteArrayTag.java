@@ -34,7 +34,6 @@ import java.util.Arrays;
  * A tag representing an array of {@code byte}s.
  */
 public final class ByteArrayTag extends Tag {
-
   /**
    * The array of bytes.
    */

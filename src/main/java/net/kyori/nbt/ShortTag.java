@@ -33,7 +33,6 @@ import java.io.IOException;
  * A tag representing a {@code short}.
  */
 public final class ShortTag extends NumberTag {
-
   /**
    * The short value.
    */

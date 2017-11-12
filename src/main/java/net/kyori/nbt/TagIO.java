@@ -38,7 +38,6 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 public final class TagIO {
-
   private TagIO() {
   }
 

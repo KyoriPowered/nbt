@@ -24,7 +24,6 @@
 package net.kyori.nbt;
 
 interface CollectionTag {
-
   /**
    * Gets the size of this collection tag.
    *
