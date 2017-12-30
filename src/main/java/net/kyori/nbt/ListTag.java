@@ -32,6 +32,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * A list tag.
  */
@@ -63,7 +65,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param values the double values
    * @return the list tag
    */
-  public static ListTag ofDoubles(final double... values) {
+  public static ListTag doubles(final double... values) {
     final ListTag tag = new ListTag();
     for(final double value : values) {
       tag.add(new DoubleTag(value));
@@ -77,10 +79,24 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param values the float values
    * @return the list tag
    */
-  public static ListTag ofFloats(final float... values) {
+  public static ListTag floats(final float... values) {
     final ListTag tag = new ListTag();
     for(final float value : values) {
       tag.add(new FloatTag(value));
+    }
+    return tag;
+  }
+
+  /**
+   * Creates a list tag with some string values.
+   *
+   * @param values the string values
+   * @return the list tag
+   */
+  public static ListTag strings(final String... values) {
+    final ListTag tag = new ListTag();
+    for(int i = 0, length = values.length; i < length; i++) {
+      tag.add(new StringTag(requireNonNull(values[i], "value at index " + i)));
     }
     return tag;
   }

@@ -30,6 +30,8 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Objects;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * A tag representing a {@link String}.
  */
@@ -40,7 +42,7 @@ public final class StringTag extends Tag {
   }
 
   public StringTag(@NonNull final String value) {
-    this.value = value;
+    this.value = requireNonNull(value, "value");
   }
 
   @NonNull
