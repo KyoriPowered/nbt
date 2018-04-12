@@ -23,7 +23,7 @@
  */
 package net.kyori.nbt;
 
-import net.kyori.blizzard.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -97,13 +97,13 @@ public enum TagType implements Predicate<TagType> {
   /**
    * The tag factory.
    */
-  @NonNull private final Supplier<Tag> factory;
+  private final @NonNull Supplier<Tag> factory;
 
-  TagType(final byte id, @NonNull final Supplier<Tag> factory) {
+  TagType(final byte id, final @NonNull Supplier<Tag> factory) {
     this(id, false, factory);
   }
 
-  TagType(final byte id, final boolean number, @NonNull final Supplier<Tag> factory) {
+  TagType(final byte id, final boolean number, final @NonNull Supplier<Tag> factory) {
     this.id = id;
     this.number = number;
     this.factory = factory;
@@ -132,13 +132,12 @@ public enum TagType implements Predicate<TagType> {
    *
    * @return a new tag
    */
-  @NonNull
-  Tag create() {
+  @NonNull Tag create() {
     return this.factory.get();
   }
 
   @Override
-  public boolean test(@NonNull final TagType that) {
+  public boolean test(final @NonNull TagType that) {
     return this == that || (this.number && that.number);
   }
 
@@ -149,8 +148,7 @@ public enum TagType implements Predicate<TagType> {
    * @return the tag type
    * @throws ArrayIndexOutOfBoundsException if the id is not without bounds
    */
-  @NonNull
-  static TagType of(final byte id) {
+  static @NonNull TagType of(final byte id) {
     return TYPES[id];
   }
 }

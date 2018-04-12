@@ -23,21 +23,21 @@
  */
 package net.kyori.nbt;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Ensure that we can read the bigtest.nbt file.
  */
-public class BigTest {
+class BigTest {
   private static final double DOUBLE_DELTA = 1e-15;
   private static final byte[] BYTE_ARRAY_TEST = new byte[1000];
   private static final ListTag LONG_LIST = new ListTag();
@@ -77,14 +77,14 @@ public class BigTest {
     NESTED_COMPOUND.put("ham", ham);
   }
 
-  @BeforeClass
-  public static void before() throws IOException, URISyntaxException {
+  @BeforeAll
+  static void before() throws IOException, URISyntaxException {
     final URL url = BigTest.class.getResource("/bigtest.nbt");
     compound = TagIO.readCompressedPath(Paths.get(url.toURI()));
   }
 
   @Test
-  public void testCorrectValues() {
+  void testCorrectValues() {
     assertEquals(Short.MAX_VALUE, compound.getShort("shortTest"));
     assertEquals(Long.MAX_VALUE, compound.getLong("longTest"));
     assertEquals(Byte.MAX_VALUE, compound.getByte("byteTest"));

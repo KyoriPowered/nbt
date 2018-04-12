@@ -23,7 +23,7 @@
  */
 package net.kyori.nbt;
 
-import net.kyori.blizzard.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -55,15 +55,14 @@ public abstract class Tag {
    *
    * @return the type
    */
-  @NonNull
-  public abstract TagType type();
+  public abstract @NonNull TagType type();
 
   /**
    * Creates a copy of this tag.
    *
    * @return a copy of this tag
    */
-  public abstract Tag copy();
+  public abstract @NonNull Tag copy();
 
   @Override
   public abstract int hashCode();

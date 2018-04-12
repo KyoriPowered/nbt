@@ -23,7 +23,6 @@
  */
 package net.kyori.nbt.display;
 
-import net.kyori.blizzard.Nullable;
 import net.kyori.nbt.ByteArrayTag;
 import net.kyori.nbt.ByteTag;
 import net.kyori.nbt.CompoundTag;
@@ -38,6 +37,7 @@ import net.kyori.nbt.LongTag;
 import net.kyori.nbt.ShortTag;
 import net.kyori.nbt.StringTag;
 import net.kyori.nbt.Tag;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -60,7 +60,7 @@ public class StringTagDisplay implements TagDisplay<String> {
     this.render(null, tag, sb, 0);
   }
 
-  private void render(@Nullable final String name, final Tag tag, final StringBuilder sb, final int depth) {
+  private void render(final @Nullable String name, final Tag tag, final StringBuilder sb, final int depth) {
     if(tag instanceof CompoundTag) {
       this.indent(sb, depth);
 

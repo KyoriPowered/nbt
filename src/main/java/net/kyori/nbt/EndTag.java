@@ -23,7 +23,7 @@
  */
 package net.kyori.nbt;
 
-import net.kyori.blizzard.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -44,14 +44,13 @@ public final class EndTag extends Tag {
   protected void write(final DataOutput output) throws IOException {
   }
 
-  @NonNull
   @Override
-  public TagType type() {
+  public @NonNull TagType type() {
     return TagType.END;
   }
 
   @Override
-  public EndTag copy() {
+  public @NonNull EndTag copy() {
     return this; // end tags have no data
   }
 

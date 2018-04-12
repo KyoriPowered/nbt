@@ -23,7 +23,7 @@
  */
 package net.kyori.nbt;
 
-import net.kyori.blizzard.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -41,12 +41,11 @@ public final class StringTag extends Tag {
   StringTag() {
   }
 
-  public StringTag(@NonNull final String value) {
+  public StringTag(final @NonNull String value) {
     this.value = requireNonNull(value, "value");
   }
 
-  @NonNull
-  public String value() {
+  public @NonNull String value() {
     return this.value;
   }
 
@@ -60,14 +59,13 @@ public final class StringTag extends Tag {
     output.writeUTF(this.value);
   }
 
-  @NonNull
   @Override
-  public TagType type() {
+  public @NonNull TagType type() {
     return TagType.STRING;
   }
 
   @Override
-  public StringTag copy() {
+  public @NonNull StringTag copy() {
     return new StringTag(this.value);
   }
 

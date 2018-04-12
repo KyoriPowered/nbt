@@ -23,7 +23,7 @@
  */
 package net.kyori.nbt;
 
-import net.kyori.blizzard.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -85,14 +85,13 @@ public final class DoubleTag extends NumberTag {
     output.writeDouble(this.value);
   }
 
-  @NonNull
   @Override
-  public TagType type() {
+  public @NonNull TagType type() {
     return TagType.DOUBLE;
   }
 
   @Override
-  public DoubleTag copy() {
+  public @NonNull DoubleTag copy() {
     return new DoubleTag(this.value);
   }
 

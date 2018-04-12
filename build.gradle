@@ -29,8 +29,9 @@ repositories {
 }
 
 dependencies {
-  compile 'net.kyori:blizzard:1.0.4-JDK8144185'
-  testCompile 'junit:junit:4.12'
+  compile 'org.checkerframework:checker-qual:2.4.0'
+  testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.3'
+  testCompile 'org.junit.jupiter:junit-jupiter-engine:5.0.3'
 }
 
 task javadocJar(type: Jar) {

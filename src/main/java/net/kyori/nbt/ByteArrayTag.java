@@ -23,7 +23,7 @@
  */
 package net.kyori.nbt;
 
-import net.kyori.blizzard.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -42,7 +42,7 @@ public final class ByteArrayTag extends Tag {
   ByteArrayTag() {
   }
 
-  public ByteArrayTag(@NonNull final byte[] value) {
+  public ByteArrayTag(final @NonNull byte[] value) {
     this.value = value;
   }
 
@@ -51,8 +51,7 @@ public final class ByteArrayTag extends Tag {
    *
    * @return the array of bytes
    */
-  @NonNull
-  public byte[] value() {
+  public @NonNull byte[] value() {
     return this.value;
   }
 
@@ -69,14 +68,13 @@ public final class ByteArrayTag extends Tag {
     output.write(this.value);
   }
 
-  @NonNull
   @Override
-  public TagType type() {
+  public @NonNull TagType type() {
     return TagType.BYTE_ARRAY;
   }
 
   @Override
-  public ByteArrayTag copy() {
+  public @NonNull ByteArrayTag copy() {
     final byte[] value = new byte[this.value.length];
     System.arraycopy(this.value, 0, value, 0, this.value.length);
     return new ByteArrayTag(value);

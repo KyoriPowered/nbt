@@ -23,7 +23,7 @@
  */
 package net.kyori.nbt;
 
-import net.kyori.blizzard.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.DataInput;
 import java.io.DataInputStream;
@@ -48,8 +48,7 @@ public final class TagIO {
    * @return the compound tag
    * @throws IOException if an exception was encountered while reading a compound tag
    */
-  @NonNull
-  public static CompoundTag readPath(@NonNull final Path path) throws IOException {
+  public static @NonNull CompoundTag readPath(final @NonNull Path path) throws IOException {
     return readInputStream(Files.newInputStream(path));
   }
 
@@ -60,8 +59,7 @@ public final class TagIO {
    * @return the compound tag
    * @throws IOException if an exception was encountered while reading a compound tag
    */
-  @NonNull
-  public static CompoundTag readInputStream(@NonNull final InputStream input) throws IOException {
+  public static @NonNull CompoundTag readInputStream(final @NonNull InputStream input) throws IOException {
     try(final DataInputStream dis = new DataInputStream(input)) {
       return readDataInput(dis);
     }
@@ -74,7 +72,7 @@ public final class TagIO {
    * @return the compound tag
    * @throws IOException if an exception was encountered while reading a compound tag
    */
-  public static CompoundTag readCompressedPath(@NonNull final Path path) throws IOException {
+  public static @NonNull CompoundTag readCompressedPath(final @NonNull Path path) throws IOException {
     return readCompressedInputStream(Files.newInputStream(path));
   }
 
@@ -85,7 +83,7 @@ public final class TagIO {
    * @return the compound tag
    * @throws IOException if an exception was encountered while reading a compound tag
    */
-  public static CompoundTag readCompressedInputStream(@NonNull final InputStream input) throws IOException {
+  public static @NonNull CompoundTag readCompressedInputStream(final @NonNull InputStream input) throws IOException {
     try(final DataInputStream dis = new DataInputStream(new GZIPInputStream(input))) {
       return readDataInput(dis);
     }
@@ -98,8 +96,7 @@ public final class TagIO {
    * @return the compound tag
    * @throws IOException if an exception was encountered while reading a compound tag
    */
-  @NonNull
-  public static CompoundTag readDataInput(@NonNull final DataInput input) throws IOException {
+  public static @NonNull CompoundTag readDataInput(final @NonNull DataInput input) throws IOException {
     final TagType type = TagType.of(input.readByte());
     if(type != TagType.COMPOUND) {
       throw new IOException(String.format("Expected root tag to be a %s, was %s", TagType.COMPOUND, type));
@@ -117,7 +114,7 @@ public final class TagIO {
    * @param path the path
    * @throws IOException if an exception was encountered while writing the compound tag
    */
-  public static void writePath(@NonNull final CompoundTag tag, @NonNull final Path path) throws IOException {
+  public static void writePath(final @NonNull CompoundTag tag, final @NonNull Path path) throws IOException {
     writeOutputStream(tag, Files.newOutputStream(path));
   }
 
@@ -128,7 +125,7 @@ public final class TagIO {
    * @param output the output stream
    * @throws IOException if an exception was encountered while writing the compound tag
    */
-  public static void writeOutputStream(@NonNull final CompoundTag tag, @NonNull final OutputStream output) throws IOException {
+  public static void writeOutputStream(final @NonNull CompoundTag tag, final @NonNull OutputStream output) throws IOException {
     try(final DataOutputStream dos = new DataOutputStream(output)) {
       writeDataOutput(tag, dos);
     }
@@ -141,7 +138,7 @@ public final class TagIO {
    * @param path the path
    * @throws IOException if an exception was encountered while writing the compound tag
    */
-  public static void writeCompressedPath(@NonNull final CompoundTag tag, @NonNull final Path path) throws IOException {
+  public static void writeCompressedPath(final @NonNull CompoundTag tag, final @NonNull Path path) throws IOException {
     writeCompressedOutputStream(tag, Files.newOutputStream(path));
   }
 
@@ -152,7 +149,7 @@ public final class TagIO {
    * @param output the output stream
    * @throws IOException if an exception was encountered while writing the compound tag
    */
-  public static void writeCompressedOutputStream(@NonNull final CompoundTag tag, @NonNull final OutputStream output) throws IOException {
+  public static void writeCompressedOutputStream(final @NonNull CompoundTag tag, final @NonNull OutputStream output) throws IOException {
     try(final DataOutputStream dos = new DataOutputStream(new GZIPOutputStream(output))) {
       writeDataOutput(tag, dos);
     }
@@ -165,7 +162,7 @@ public final class TagIO {
    * @param output the output
    * @throws IOException if an exception was encountered while writing the compound tag
    */
-  public static void writeDataOutput(@NonNull final CompoundTag tag, @NonNull final DataOutput output) throws IOException {
+  public static void writeDataOutput(final @NonNull CompoundTag tag, final @NonNull DataOutput output) throws IOException {
     output.writeByte(tag.type().id());
     if(tag.type() != TagType.END) {
       output.writeUTF(""); // write empty name

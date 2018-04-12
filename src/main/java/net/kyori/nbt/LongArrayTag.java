@@ -23,7 +23,7 @@
  */
 package net.kyori.nbt;
 
-import net.kyori.blizzard.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -42,7 +42,7 @@ public final class LongArrayTag extends Tag {
   LongArrayTag() {
   }
 
-  public LongArrayTag(@NonNull final long[] value) {
+  public LongArrayTag(final @NonNull long[] value) {
     this.value = value;
   }
 
@@ -51,8 +51,7 @@ public final class LongArrayTag extends Tag {
    *
    * @return the array of longs
    */
-  @NonNull
-  public long[] value() {
+  public @NonNull long[] value() {
     return this.value;
   }
 
@@ -73,14 +72,13 @@ public final class LongArrayTag extends Tag {
     }
   }
 
-  @NonNull
   @Override
-  public TagType type() {
+  public @NonNull TagType type() {
     return TagType.LONG_ARRAY;
   }
 
   @Override
-  public LongArrayTag copy() {
+  public @NonNull LongArrayTag copy() {
     final long[] value = new long[this.value.length];
     System.arraycopy(this.value, 0, value, 0, this.value.length);
     return new LongArrayTag(value);
