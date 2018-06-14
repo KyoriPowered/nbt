@@ -37,7 +37,7 @@ import java.util.UUID;
 /**
  * A compound tag.
  */
-public final class CompoundTag extends Tag implements CollectionTag {
+public final class CompoundTag implements CollectionTag {
   /**
    * The maximum depth.
    */
@@ -677,7 +677,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) throws IOException {
     if(depth > MAX_DEPTH) {
       throw new IllegalStateException(String.format("Depth of %d is higher than max of %d", depth, MAX_DEPTH));
     }
@@ -692,7 +692,7 @@ public final class CompoundTag extends Tag implements CollectionTag {
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) throws IOException {
     for(final String key : this.tags.keySet()) {
       final Tag tag = this.tags.get(key);
       output.writeByte(tag.type().id());

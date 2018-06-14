@@ -26,48 +26,48 @@ package net.kyori.nbt;
 /**
  * A number tag.
  */
-public abstract class NumberTag extends Tag {
+public interface NumberTag extends Tag {
   /**
    * Gets the byte value.
    *
    * @return the byte value
    */
-  public abstract byte byteValue();
+  byte byteValue();
 
   /**
    * Gets the double value.
    *
    * @return the double value
    */
-  public abstract double doubleValue();
+  double doubleValue();
 
   /**
    * Gets the float value.
    *
    * @return the float value
    */
-  public abstract float floatValue();
+  float floatValue();
 
   /**
    * Gets the int value.
    *
    * @return the int value
    */
-  public abstract int intValue();
+  int intValue();
 
   /**
    * Gets the long value.
    *
    * @return the long value
    */
-  public abstract long longValue();
+  long longValue();
 
   /**
    * Gets the short value.
    *
    * @return the short value
    */
-  public abstract short shortValue();
+  short shortValue();
 
   // rather than depending on math as a whole, we'll just copy these two methods over
   // https://github.com/KyoriPowered/math/blob/master/src/main/java/net/kyori/math/Mth.java

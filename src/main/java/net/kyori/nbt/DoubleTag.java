@@ -32,7 +32,7 @@ import java.io.IOException;
 /**
  * A tag representing a {@code double}.
  */
-public final class DoubleTag extends NumberTag {
+public final class DoubleTag implements NumberTag {
   /**
    * The double value.
    */
@@ -47,7 +47,7 @@ public final class DoubleTag extends NumberTag {
 
   @Override
   public byte byteValue() {
-    return (byte) (floor(this.value) & 0xff);
+    return (byte) (NumberTag.floor(this.value) & 0xff);
   }
 
   @Override
@@ -62,7 +62,7 @@ public final class DoubleTag extends NumberTag {
 
   @Override
   public int intValue() {
-    return floor(this.value);
+    return NumberTag.floor(this.value);
   }
 
   @Override
@@ -72,16 +72,16 @@ public final class DoubleTag extends NumberTag {
 
   @Override
   public short shortValue() {
-    return (short) (floor(this.value) & 0xffff);
+    return (short) (NumberTag.floor(this.value) & 0xffff);
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) throws IOException {
     this.value = input.readDouble();
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) throws IOException {
     output.writeDouble(this.value);
   }
 

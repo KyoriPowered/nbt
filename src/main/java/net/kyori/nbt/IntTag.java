@@ -32,7 +32,7 @@ import java.io.IOException;
 /**
  * A tag representing an {@code int}.
  */
-public final class IntTag extends NumberTag {
+public final class IntTag implements NumberTag {
   /**
    * The int value.
    */
@@ -76,12 +76,12 @@ public final class IntTag extends NumberTag {
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) throws IOException {
     this.value = input.readInt();
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) throws IOException {
     output.writeInt(this.value);
   }
 

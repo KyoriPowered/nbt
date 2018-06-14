@@ -21,22 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package net.kyori.nbt.display;
+package net.kyori.nbt;
 
-import net.kyori.nbt.Tag;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import java.util.List;
 
 /**
- * A tag renderer.
- *
- * @param <R> the result type
+ * An indexed collection tag.
  */
-public interface TagDisplay<R> {
-  /**
-   * Renders a tag.
-   *
-   * @param tag the tag
-   * @return the rendered result
-   */
-  @NonNull R render(final @NonNull Tag tag);
+public interface IndexedCollectionTag<T extends Tag> extends CollectionTag, List<T> {
 }

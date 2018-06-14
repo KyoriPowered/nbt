@@ -23,7 +23,10 @@
  */
 package net.kyori.nbt;
 
-interface CollectionTag {
+/**
+ * A collection tag.
+ */
+public interface CollectionTag extends Tag {
   /**
    * Gets the size of this collection tag.
    *

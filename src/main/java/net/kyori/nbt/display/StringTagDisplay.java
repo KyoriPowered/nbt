@@ -37,6 +37,7 @@ import net.kyori.nbt.LongTag;
 import net.kyori.nbt.ShortTag;
 import net.kyori.nbt.StringTag;
 import net.kyori.nbt.Tag;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Collections;
@@ -50,13 +51,13 @@ public class StringTagDisplay implements TagDisplay<String> {
   private static final Pattern SIMPLE_VALUE = Pattern.compile("[a-zA-Z0-9._+-]+");
 
   @Override
-  public String render(final Tag tag) {
+  public @NonNull String render(final @NonNull Tag tag) {
     final StringBuilder sb = new StringBuilder();
     this.render(tag, sb);
     return sb.toString();
   }
 
-  public void render(final Tag tag, final StringBuilder sb) {
+  public void render(final @NonNull Tag tag, final @NonNull StringBuilder sb) {
     this.render(null, tag, sb, 0);
   }
 

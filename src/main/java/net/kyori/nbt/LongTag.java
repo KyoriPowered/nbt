@@ -32,7 +32,7 @@ import java.io.IOException;
 /**
  * A tag representing a {@code long}.
  */
-public final class LongTag extends NumberTag {
+public final class LongTag implements NumberTag {
   /**
    * The long value.
    */
@@ -76,12 +76,12 @@ public final class LongTag extends NumberTag {
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) throws IOException {
     this.value = input.readLong();
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) throws IOException {
     output.writeLong(this.value);
   }
 

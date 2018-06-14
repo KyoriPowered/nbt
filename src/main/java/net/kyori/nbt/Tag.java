@@ -32,7 +32,7 @@ import java.io.IOException;
 /**
  * A tag.
  */
-public abstract class Tag {
+public interface Tag {
   /**
    * Reads the value of this tag from {@code input}.
    *
@@ -40,7 +40,7 @@ public abstract class Tag {
    * @param depth the depth
    * @throws IOException if an exception was encountered while reading
    */
-  protected abstract void read(final DataInput input, final int depth) throws IOException;
+  void read(final @NonNull DataInput input, final int depth) throws IOException;
 
   /**
    * Writes the value of this tag to {@code output}.
@@ -48,25 +48,25 @@ public abstract class Tag {
    * @param output the output
    * @throws IOException if an exception was encountered while writing
    */
-  protected abstract void write(final DataOutput output) throws IOException;
+  void write(final @NonNull DataOutput output) throws IOException;
 
   /**
    * Gets the type of this tag.
    *
    * @return the type
    */
-  public abstract @NonNull TagType type();
+  @NonNull TagType type();
 
   /**
    * Creates a copy of this tag.
    *
    * @return a copy of this tag
    */
-  public abstract @NonNull Tag copy();
+  @NonNull Tag copy();
 
   @Override
-  public abstract int hashCode();
+  int hashCode();
 
   @Override
-  public abstract boolean equals(final Object that);
+  boolean equals(final Object that);
 }

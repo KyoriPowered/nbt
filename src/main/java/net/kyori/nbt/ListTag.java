@@ -29,6 +29,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * A list tag.
  */
-public final class ListTag extends Tag implements CollectionTag {
+public final class ListTag extends AbstractList<Tag> implements IndexedCollectionTag<Tag> {
   /**
    * The maximum depth.
    */
@@ -117,6 +118,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @return the tag
    * @throws IndexOutOfBoundsException if the index is out of range
    */
+  @Override
   public @NonNull Tag get(final @NonNegative int index) {
     return this.tags.get(index);
   }
@@ -417,7 +419,8 @@ public final class ListTag extends Tag implements CollectionTag {
    *
    * @param tag the tag
    */
-  public void add(final @NonNull Tag tag) {
+  @Override
+  public boolean add(final @NonNull Tag tag) {
     // don't allow an end tag to be added
     if(tag.type() == TagType.END) {
       throw new IllegalArgumentException(String.format("Cannot add a '%s' to a '%s'", EndTag.class.getSimpleName(), ListTag.class.getSimpleName()));
@@ -427,6 +430,7 @@ public final class ListTag extends Tag implements CollectionTag {
       this.type = tag.type();
     }
     this.tags.add(tag);
+    return true;
   }
 
   /**
@@ -436,7 +440,8 @@ public final class ListTag extends Tag implements CollectionTag {
    * @param tag the tag
    * @throws IndexOutOfBoundsException if the index is out of range
    */
-  public void set(final int index, final @NonNull Tag tag) {
+  @Override
+  public Tag set(final int index, final @NonNull Tag tag) {
     // don't allow an end tag to be added
     if(tag.type() == TagType.END) {
       throw new IllegalArgumentException(String.format("Cannot add a '%s' to a '%s'", EndTag.class.getSimpleName(), ListTag.class.getSimpleName()));
@@ -445,7 +450,7 @@ public final class ListTag extends Tag implements CollectionTag {
     if(this.type == TagType.END) {
       this.type = tag.type();
     }
-    this.tags.set(index, tag);
+    return this.tags.set(index, tag);
   }
 
   /**
@@ -455,6 +460,7 @@ public final class ListTag extends Tag implements CollectionTag {
    * @return the tag
    * @throws IndexOutOfBoundsException if the index is out of range
    */
+  @Override
   public @NonNull Tag remove(final int index) {
     return this.tags.remove(index);
   }
@@ -470,7 +476,7 @@ public final class ListTag extends Tag implements CollectionTag {
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) throws IOException {
     if(depth > MAX_DEPTH) {
       throw new IllegalStateException(String.format("Depth of %d is higher than max of %d", depth, MAX_DEPTH));
     }
@@ -486,7 +492,7 @@ public final class ListTag extends Tag implements CollectionTag {
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) throws IOException {
     output.writeByte(this.type.id());
     output.writeInt(this.tags.size());
     for(int i = 0, length = this.tags.size(); i < length; i++) {

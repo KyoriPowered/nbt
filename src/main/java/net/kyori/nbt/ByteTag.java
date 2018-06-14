@@ -32,7 +32,7 @@ import java.io.IOException;
 /**
  * A tag representing a {@code byte}.
  */
-public final class ByteTag extends NumberTag {
+public final class ByteTag implements NumberTag {
   /**
    * A {@code byte} representing a {@code boolean} value of {@code false}.
    */
@@ -84,12 +84,12 @@ public final class ByteTag extends NumberTag {
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) throws IOException {
     this.value = input.readByte();
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) throws IOException {
     output.writeByte(this.value);
   }
 

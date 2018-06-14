@@ -32,7 +32,7 @@ import java.io.IOException;
 /**
  * A tag representing a {@code short}.
  */
-public final class ShortTag extends NumberTag {
+public final class ShortTag implements NumberTag {
   /**
    * The short value.
    */
@@ -76,12 +76,12 @@ public final class ShortTag extends NumberTag {
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) throws IOException {
     this.value = input.readShort();
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) throws IOException {
     output.writeShort(this.value);
   }
 

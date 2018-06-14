@@ -27,21 +27,20 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.DataInput;
 import java.io.DataOutput;
-import java.io.IOException;
 
 /**
  * An end tag.
  */
-public final class EndTag extends Tag {
+public final class EndTag implements Tag {
   EndTag() {
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) {
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) {
   }
 
   @Override

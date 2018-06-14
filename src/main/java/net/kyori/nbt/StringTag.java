@@ -35,7 +35,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * A tag representing a {@link String}.
  */
-public final class StringTag extends Tag {
+public final class StringTag implements Tag {
   private String value;
 
   StringTag() {
@@ -50,12 +50,12 @@ public final class StringTag extends Tag {
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) throws IOException {
     this.value = input.readUTF();
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) throws IOException {
     output.writeUTF(this.value);
   }
 

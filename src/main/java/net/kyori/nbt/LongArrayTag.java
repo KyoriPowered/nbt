@@ -28,12 +28,13 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.AbstractList;
 import java.util.Arrays;
 
 /**
  * A tag representing an array of {@code long}s.
  */
-public final class LongArrayTag extends Tag {
+public final class LongArrayTag extends AbstractList<LongTag> implements IndexedCollectionTag<LongTag> {
   /**
    * The array of longs.
    */
@@ -46,6 +47,16 @@ public final class LongArrayTag extends Tag {
     this.value = value;
   }
 
+  @Override
+  public int size() {
+    return this.value.length;
+  }
+
+  @Override
+  public LongTag get(final int index) {
+    return new LongTag(this.value[index]);
+  }
+
   /**
    * Gets the array of longs.
    *
@@ -56,7 +67,7 @@ public final class LongArrayTag extends Tag {
   }
 
   @Override
-  protected void read(final DataInput input, final int depth) throws IOException {
+  public void read(final @NonNull DataInput input, final int depth) throws IOException {
     final int length = input.readInt();
     this.value = new long[length];
     for(int i = 0; i < length; i++) {
@@ -65,7 +76,7 @@ public final class LongArrayTag extends Tag {
   }
 
   @Override
-  protected void write(final DataOutput output) throws IOException {
+  public void write(final @NonNull DataOutput output) throws IOException {
     output.writeLong(this.value.length);
     for(int i = 0, length = this.value.length; i < length; i++) {
       output.writeLong(this.value[i]);
