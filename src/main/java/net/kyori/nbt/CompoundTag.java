@@ -650,7 +650,7 @@ public final class CompoundTag implements CollectionTag {
    * @return the unique id
    */
   public @NonNull UUID getUniqueId(final @NonNull String key) {
-    return new UUID(this.getLong(key + "Least"), this.getLong(key + "Most"));
+    return new UUID(this.getLong(key + "Most"), this.getLong(key + "Least"));
   }
 
   /**
