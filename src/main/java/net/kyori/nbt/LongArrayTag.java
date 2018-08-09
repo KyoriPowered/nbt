@@ -77,7 +77,7 @@ public final class LongArrayTag extends AbstractList<LongTag> implements Indexed
 
   @Override
   public void write(final @NonNull DataOutput output) throws IOException {
-    output.writeLong(this.value.length);
+    output.writeInt(this.value.length);
     for(int i = 0, length = this.value.length; i < length; i++) {
       output.writeLong(this.value[i]);
     }
