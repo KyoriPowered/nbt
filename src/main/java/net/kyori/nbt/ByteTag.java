@@ -60,27 +60,27 @@ public final class ByteTag implements NumberTag {
 
   @Override
   public double doubleValue() {
-    return this.value;
+    return (double) this.value;
   }
 
   @Override
   public float floatValue() {
-    return this.value;
+    return (float) this.value;
   }
 
   @Override
   public int intValue() {
-    return this.value;
+    return (int) this.value;
   }
 
   @Override
   public long longValue() {
-    return this.value;
+    return (long) this.value;
   }
 
   @Override
   public short shortValue() {
-    return this.value;
+    return (short) this.value;
   }
 
   @Override

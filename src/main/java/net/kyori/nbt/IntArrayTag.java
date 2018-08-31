@@ -43,7 +43,7 @@ public final class IntArrayTag extends AbstractList<IntTag> implements IndexedCo
   IntArrayTag() {
   }
 
-  public IntArrayTag(final @NonNull int[] value) {
+  public IntArrayTag(final int@NonNull[] value) {
     this.value = value;
   }
 
@@ -62,7 +62,7 @@ public final class IntArrayTag extends AbstractList<IntTag> implements IndexedCo
    *
    * @return the array of ints
    */
-  public @NonNull int[] value() {
+  public int@NonNull[] value() {
     return this.value;
   }
 

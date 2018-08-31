@@ -43,7 +43,7 @@ public final class ByteArrayTag extends AbstractList<ByteTag> implements Indexed
   ByteArrayTag() {
   }
 
-  public ByteArrayTag(final @NonNull byte[] value) {
+  public ByteArrayTag(final byte@NonNull[] value) {
     this.value = value;
   }
 
@@ -62,7 +62,7 @@ public final class ByteArrayTag extends AbstractList<ByteTag> implements Indexed
    *
    * @return the array of bytes
    */
-  public @NonNull byte[] value() {
+  public byte@NonNull[] value() {
     return this.value;
   }
 

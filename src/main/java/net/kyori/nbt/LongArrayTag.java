@@ -43,7 +43,7 @@ public final class LongArrayTag extends AbstractList<LongTag> implements Indexed
   LongArrayTag() {
   }
 
-  public LongArrayTag(final @NonNull long[] value) {
+  public LongArrayTag(final long@NonNull[] value) {
     this.value = value;
   }
 
@@ -62,7 +62,7 @@ public final class LongArrayTag extends AbstractList<LongTag> implements Indexed
    *
    * @return the array of longs
    */
-  public @NonNull long[] value() {
+  public long@NonNull[] value() {
     return this.value;
   }
 
