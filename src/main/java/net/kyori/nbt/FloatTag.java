@@ -102,6 +102,6 @@ public final class FloatTag implements NumberTag {
 
   @Override
   public boolean equals(final Object that) {
-    return this == that || (that instanceof FloatTag && this.value == ((FloatTag) that).value);
+    return this == that || (that instanceof FloatTag && Float.floatToIntBits(this.value) == Float.floatToIntBits(((FloatTag) that).value));
   }
 }

@@ -102,6 +102,6 @@ public final class DoubleTag implements NumberTag {
 
   @Override
   public boolean equals(final Object that) {
-    return this == that || (that instanceof DoubleTag && this.value == ((DoubleTag) that).value);
+    return this == that || (that instanceof DoubleTag && Double.doubleToLongBits(this.value) == Double.doubleToLongBits(((DoubleTag) that).value));
   }
 }
