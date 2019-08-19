@@ -351,7 +351,7 @@ public final class CompoundTag implements CollectionTag {
    * @return the array of bytes, or a zero-length array if this compound does not contain a byte array tag
    *     with the specified key, or has a tag with a different type
    */
-  public @NonNull byte[] getByteArray(final @NonNull String key) {
+  public byte@NonNull[] getByteArray(final @NonNull String key) {
     if(this.contains(key, TagType.BYTE_ARRAY)) {
       return ((ByteArrayTag) this.tags.get(key)).value();
     }
@@ -365,7 +365,7 @@ public final class CompoundTag implements CollectionTag {
    * @param defaultValue the default value
    * @return the array of bytes, or {@code defaultValue}
    */
-  public @NonNull byte[] getByteArray(final @NonNull String key, final @NonNull byte[] defaultValue) {
+  public byte@NonNull[] getByteArray(final @NonNull String key, final byte@NonNull[] defaultValue) {
     if(this.contains(key, TagType.BYTE_ARRAY)) {
       return ((ByteArrayTag) this.tags.get(key)).value();
     }
@@ -378,7 +378,7 @@ public final class CompoundTag implements CollectionTag {
    * @param key the key
    * @param value the value
    */
-  public void putByteArray(final @NonNull String key, final @NonNull byte[] value) {
+  public void putByteArray(final @NonNull String key, final byte@NonNull[] value) {
     this.tags.put(key, new ByteArrayTag(value));
   }
 
@@ -522,7 +522,7 @@ public final class CompoundTag implements CollectionTag {
    * @return the array of ints, or a zero-length array if this compound does not contain a int array tag
    *     with the specified key, or has a tag with a different type
    */
-  public @NonNull int[] getIntArray(final @NonNull String key) {
+  public int@NonNull[] getIntArray(final @NonNull String key) {
     if(this.contains(key, TagType.INT_ARRAY)) {
       return ((IntArrayTag) this.tags.get(key)).value();
     }
@@ -536,7 +536,7 @@ public final class CompoundTag implements CollectionTag {
    * @param defaultValue the default value
    * @return the array of ints, or {@code defaultValue}
    */
-  public @NonNull int[] getIntArray(final @NonNull String key, final @NonNull int[] defaultValue) {
+  public int@NonNull[] getIntArray(final @NonNull String key, final int@NonNull[] defaultValue) {
     if(this.contains(key, TagType.INT_ARRAY)) {
       return ((IntArrayTag) this.tags.get(key)).value();
     }
@@ -549,7 +549,7 @@ public final class CompoundTag implements CollectionTag {
    * @param key the key
    * @param value the value
    */
-  public void putIntArray(final @NonNull String key, final @NonNull int[] value) {
+  public void putIntArray(final @NonNull String key, final int@NonNull[] value) {
     this.tags.put(key, new IntArrayTag(value));
   }
 
@@ -560,8 +560,8 @@ public final class CompoundTag implements CollectionTag {
    * @return the array of longs, or a zero-length array if this compound does not contain a long array tag
    *     with the specified key, or has a tag with a different type
    */
-  public @NonNull long[] getLongArray(final @NonNull String key) {
-    if(this.contains(key, TagType.BYTE_ARRAY)) {
+  public long@NonNull[] getLongArray(final @NonNull String key) {
+    if(this.contains(key, TagType.LONG_ARRAY)) {
       return ((LongArrayTag) this.tags.get(key)).value();
     }
     return new long[0];
@@ -574,8 +574,8 @@ public final class CompoundTag implements CollectionTag {
    * @param defaultValue the default value
    * @return the array of longs, or {@code defaultValue}
    */
-  public @NonNull long[] getLongArray(final @NonNull String key, final @NonNull long[] defaultValue) {
-    if(this.contains(key, TagType.BYTE_ARRAY)) {
+  public long@NonNull[] getLongArray(final @NonNull String key, final long@NonNull[] defaultValue) {
+    if(this.contains(key, TagType.LONG_ARRAY)) {
       return ((LongArrayTag) this.tags.get(key)).value();
     }
     return defaultValue;
@@ -587,7 +587,7 @@ public final class CompoundTag implements CollectionTag {
    * @param key the key
    * @param value the value
    */
-  public void putLongArray(final @NonNull String key, final @NonNull long[] value) {
+  public void putLongArray(final @NonNull String key, final long@NonNull[] value) {
     this.tags.put(key, new LongArrayTag(value));
   }
 
