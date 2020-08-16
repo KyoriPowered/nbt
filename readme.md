@@ -1,5 +1,3 @@
-# nbt
+# nbt - legacy, no longer maintained
 
-An NBT library for Minecraft.
-
-[![Build Status](https://travis-ci.org/KyoriPowered/nbt.svg?branch=master)](https://travis-ci.org/KyoriPowered/nbt)
+This project has been merged into [Adventure](https://github.com/KyoriPowered/adventure).
